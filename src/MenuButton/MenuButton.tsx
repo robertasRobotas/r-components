@@ -4,20 +4,69 @@ import styled, { css } from 'styled-components';
 type MenuButtonProps = {
   isPressed: boolean;
   onClick: () => void;
+  left?: string;
+  bottom?: string;
+  right?: string;
+  top?: string;
+  maxDisplaySize?: string;
 };
 
 const Hamburger = styled.div<any>`
-  display: block;
-  height: 26px;
-  width: 32px;
-  position: absolute;
-  top: 17px;
-  left: 20px;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
+  display: none;
+
+  ${(props) =>
+    !props.maxDisplaySize &&
+    css`
+      display: block;
+      height: 26px;
+      width: 32px;
+      position: absolute;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    `}
+
+  ${(props) =>
+    props.maxDisplaySize &&
+    css`
+      @media (max-width: ${props.maxDisplaySize}) {
+        display: block;
+        height: 26px;
+        width: 32px;
+        position: absolute;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+      }
+    `}
+
+  ${(props) =>
+    props.left &&
+    css`
+      left: ${props.left};
+    `}
+
+  ${(props) =>
+    props.bottom &&
+    css`
+      bottom: ${props.bottom};
+    `}
+
+      ${(props) =>
+    props.right &&
+    css`
+      right: ${props.right};
+    `}
+
+        ${(props) =>
+    props.top &&
+    css`
+      top: ${props.top};
+    `}
 `;
 
 const Line1 = styled.div<any>`
@@ -67,10 +116,25 @@ const Line3 = styled.div<any>`
     `}
 `;
 
-export const MenuButton = ({ isPressed, onClick }: MenuButtonProps) => {
+export const MenuButton = ({
+  left,
+  right,
+  top,
+  bottom,
+  isPressed,
+  maxDisplaySize,
+  onClick,
+}: MenuButtonProps) => {
   console.log(isPressed);
   return (
-    <Hamburger onClick={onClick}>
+    <Hamburger
+      onClick={onClick}
+      left={left}
+      right={right}
+      top={top}
+      bottom={bottom}
+      maxDisplaySize={maxDisplaySize}
+    >
       <Line1 isPressed={isPressed} />
       <Line2 isPressed={isPressed} />
       <Line3 isPressed={isPressed} />
