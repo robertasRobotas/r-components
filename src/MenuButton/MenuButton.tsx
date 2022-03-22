@@ -9,6 +9,7 @@ type MenuButtonProps = {
   right?: string;
   top?: string;
   maxDisplaySize?: string;
+  transitionDuration?: string;
 };
 
 const Hamburger = styled.div<any>`
@@ -70,7 +71,10 @@ const Hamburger = styled.div<any>`
 `;
 
 const Line1 = styled.div<any>`
-  transition: transform 0.4s ease-in-out;
+  transition: ${(props) =>
+    props.transitionDuration
+      ? props.transitionDuration
+      : 'transform 0.3s ease-in-out'};
   display: block;
   height: 3px;
   width: 100%;
@@ -86,7 +90,10 @@ const Line1 = styled.div<any>`
 `;
 
 const Line2 = styled.div<any>`
-  transition: transform 0.4s ease-in-out;
+  transition: ${(props) =>
+    props.transitionDuration
+      ? props.transitionDuration
+      : 'transform 0.3s ease-in-out'};
   display: block;
   height: 3px;
   width: 100%;
@@ -101,7 +108,10 @@ const Line2 = styled.div<any>`
 `;
 
 const Line3 = styled.div<any>`
-  transition: transform 0.4s ease-in-out;
+  transition: ${(props) =>
+    props.transitionDuration
+      ? props.transitionDuration
+      : 'transform 0.3s ease-in-out'};
   display: block;
   height: 3px;
   width: 100%;
@@ -123,6 +133,7 @@ export const MenuButton = ({
   bottom,
   isPressed,
   maxDisplaySize,
+  transitionDuration,
   onClick,
 }: MenuButtonProps) => {
   console.log(isPressed);
@@ -135,9 +146,9 @@ export const MenuButton = ({
       bottom={bottom}
       maxDisplaySize={maxDisplaySize}
     >
-      <Line1 isPressed={isPressed} />
-      <Line2 isPressed={isPressed} />
-      <Line3 isPressed={isPressed} />
+      <Line1 isPressed={isPressed} transitionDuration={transitionDuration} />
+      <Line2 isPressed={isPressed} transitionDuration={transitionDuration} />
+      <Line3 isPressed={isPressed} transitionDuration={transitionDuration} />
     </Hamburger>
   );
 };
