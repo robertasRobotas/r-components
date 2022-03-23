@@ -10,6 +10,7 @@ type MenuButtonProps = {
   top?: string;
   maxDisplaySize?: string;
   transitionDuration?: string;
+  color?: string;
 };
 
 const Hamburger = styled.div<any>`
@@ -79,7 +80,7 @@ const Line1 = styled.div<any>`
   height: 3px;
   width: 100%;
   border-radius: 10px;
-  background: #0e2431;
+  background: ${(props) => (props.color ? props.color : '#0e2431')};
   transform-origin: 0% 0%;
 
   ${(props) =>
@@ -98,7 +99,7 @@ const Line2 = styled.div<any>`
   height: 3px;
   width: 100%;
   border-radius: 10px;
-  background: #0e2431;
+  background: ${(props) => (props.color ? props.color : '#0e2431')};
 
   ${(props) =>
     props.isPressed &&
@@ -116,7 +117,7 @@ const Line3 = styled.div<any>`
   height: 3px;
   width: 100%;
   border-radius: 10px;
-  background: #0e2431;
+  background: ${(props) => (props.color ? props.color : '#0e2431')};
   transform-origin: 0% 100%;
 
   ${(props) =>
@@ -127,6 +128,7 @@ const Line3 = styled.div<any>`
 `;
 
 export const MenuButton = ({
+  color,
   left,
   right,
   top,
@@ -146,9 +148,21 @@ export const MenuButton = ({
       bottom={bottom}
       maxDisplaySize={maxDisplaySize}
     >
-      <Line1 isPressed={isPressed} transitionDuration={transitionDuration} />
-      <Line2 isPressed={isPressed} transitionDuration={transitionDuration} />
-      <Line3 isPressed={isPressed} transitionDuration={transitionDuration} />
+      <Line1
+        isPressed={isPressed}
+        transitionDuration={transitionDuration}
+        color={color}
+      />
+      <Line2
+        isPressed={isPressed}
+        transitionDuration={transitionDuration}
+        color={color}
+      />
+      <Line3
+        isPressed={isPressed}
+        transitionDuration={transitionDuration}
+        color={color}
+      />
     </Hamburger>
   );
 };
