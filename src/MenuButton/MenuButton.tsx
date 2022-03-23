@@ -138,7 +138,6 @@ export const MenuButton = ({
   transitionDuration,
   onClick,
 }: MenuButtonProps) => {
-  console.log(isPressed);
   return (
     <Hamburger
       onClick={onClick}
