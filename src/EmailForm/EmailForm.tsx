@@ -1,6 +1,18 @@
 import React, { useState, useRef } from 'react';
-import styled, { css } from 'styled-components';
 import emailjs from '@emailjs/browser';
+import { checkValidation } from './validation';
+import {
+  Wrapper,
+  Input,
+  TextArea,
+  SubmitButtonWrapper,
+  SubmitButton,
+  ErrorMessageWrapper,
+  SuccessMessageWrapper,
+  AddFileInput,
+  AddFileButton,
+  AddFileButtonWrapper,
+} from './EmailForm.styles';
 
 type EmailFormProps = {
   isName: boolean;
@@ -27,81 +39,18 @@ type EmailFormProps = {
   inputHeight: string;
   textAreaHeight: string;
 
-  submitButtonInputComponent: React.ReactNode;
+  submitButton: React.ReactNode;
   submitButtonAlignSide: 'left' | 'right';
   addFileButton?: React.ReactNode;
 
   your_service_id: string;
   your_template_id: string;
   your_user_id: string;
+
+  messageSendSuccessfully: string;
+  messageFillAllFields: string;
+  messageUnnexpectedSendIssue: string;
 };
-
-const Wrapper = styled.form<any>`
-  margin: 0;
-  width: 100%;
-  font: ${(props) => props.font};
-  fontcolor: ${(props) => props.fontColor};
-`;
-
-const Input = styled.input<any>`
-  width: 100%;
-  box-sizing: border-box;
-  ${(props) =>
-    props.isBorder &&
-    css`
-      border: ${props.borderSize ? props.borderSize : '1px'} solid
-        ${props.borderColor ? props.borderColor : 'black'};
-    `}
-  background: ${(props) => props.backgroundColor};
-  height: ${(props) => props.height};
-  padding-top: ${(props) => props.topBottomPadding};
-  padding-bottom: ${(props) => props.topBottomPadding};
-  padding-left: ${(props) => props.leftRightPadding};
-  padding-right: ${(props) => props.leftRightPadding};
-  border-radius: ${(props) => props.borderRadius};
-  box-shadow: ${(props) => props.boxShadow};
-  margin-bottom: ${(props) => props.gap};
-`;
-
-const TextArea = styled.textarea<any>`
-  width: 100%;
-  box-sizing: border-box;
-  resize: none;
-  ${(props) =>
-    props.isBorder &&
-    css`
-      border: ${props.borderSize ? props.borderSize : '1px'} solid
-        ${props.borderColor ? props.borderColor : 'black'};
-    `}
-  background: ${(props) => props.backgroundColor};
-  height: ${(props) => props.height};
-  padding-top: ${(props) => props.topBottomPadding};
-  padding-bottom: ${(props) => props.topBottomPadding};
-  padding-left: ${(props) => props.leftRightPadding};
-  padding-right: ${(props) => props.leftRightPadding};
-  border-radius: ${(props) => props.borderRadius};
-  box-shadow: ${(props) => props.boxShadow};
-`;
-
-const SubmitButton = styled.button<any>`
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  margin-top: ${(props) => props.submitButtonGap};
-`;
-
-const SubmitButtonWrapper = styled.div<any>`
-  ${(props) =>
-    props.submitButtonAlignSide === 'right' &&
-    css`
-      display: flex;
-      justify-content: flex-end;
-    `}
-`;
-
-const ErrorMessage = styled.div<any>``;
-
-const SuccessMessage = styled.div<any>``;
 
 export const EmailForm = ({
   isName,
@@ -121,7 +70,7 @@ export const EmailForm = ({
   borderRadius,
   inputHeight,
   textAreaHeight,
-  submitButtonInputComponent,
+  submitButton,
   submitButtonGap,
   submitButtonAlignSide,
   addFileButton,
@@ -130,8 +79,12 @@ export const EmailForm = ({
   your_service_id,
   your_template_id,
   your_user_id,
+  messageSendSuccessfully,
+  messageFillAllFields,
+  messageUnnexpectedSendIssue,
 }: EmailFormProps) => {
   const form = useRef();
+  const inputFile = useRef<any>(null);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -140,33 +93,67 @@ export const EmailForm = ({
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [idDisabledButton, setIsDisabledButton] = useState(false);
 
   const addFile = () => {
+    inputFile.current!.click();
     console.log('add file');
   };
 
   const sendEmail = (e: any) => {
     e.preventDefault();
 
+    setIsDisabledButton(true);
+
+    const validation = checkValidation({
+      isName,
+      isEmail,
+      isMessage,
+      name,
+      email,
+      message,
+    });
+
+    if (!validation) {
+      setSubmitMessage(messageFillAllFields);
+      setIsError(true);
+      return;
+    }
+
     emailjs
       .sendForm(your_service_id, your_template_id, form.current!, your_user_id)
       .then(
         (result: any) => {
           console.log(result.text);
+          setIsSuccess(true);
+          setSubmitMessage(messageSendSuccessfully);
         },
         (error: any) => {
+          setIsError(true);
+          setSubmitMessage(messageUnnexpectedSendIssue);
           console.log(error.text);
         }
       );
+  };
+
+  const removeValidationError = () => {
+    if (isError) {
+      setIsError(false);
+      setIsDisabledButton(false);
+    }
   };
 
   return (
     <Wrapper ref={form} font={font} fontColor={fontColor}>
       {isName && (
         <Input
+          name="name"
           placeholder={namePlaceholder}
           value={name}
-          onChange={(e: any) => setName(e.target.value)}
+          onChange={(e: any) => {
+            setName(e.target.value);
+            removeValidationError();
+          }}
           isBorder={isBorder}
           borderSize={borderSize}
           borderColor={borderColor}
@@ -182,9 +169,13 @@ export const EmailForm = ({
 
       {isEmail && (
         <Input
+          name="email"
           placeholder={emailPlaceholder}
           value={email}
-          onChange={(e: any) => setEmail(e.target.value)}
+          onChange={(e: any) => {
+            setEmail(e.target.value);
+            removeValidationError();
+          }}
           isBorder={isBorder}
           borderSize={borderSize}
           borderColor={borderColor}
@@ -200,9 +191,13 @@ export const EmailForm = ({
 
       {isMessage && (
         <TextArea
+          name="message"
           placeholder={messagePlaceholder}
           value={message}
-          onChange={(e: any) => setMessage(e.target.value)}
+          onChange={(e: any) => {
+            setMessage(e.target.value);
+            removeValidationError();
+          }}
           isBorder={isBorder}
           borderSize={borderSize}
           borderColor={borderColor}
@@ -215,16 +210,28 @@ export const EmailForm = ({
         />
       )}
 
-      {addFileButton && <div onClick={addFile}>{addFileButton}</div>}
+      {addFileButton && (
+        <>
+          <AddFileInput name="image" type="file" ref={inputFile} />
+          <AddFileButtonWrapper>
+            <AddFileButton onClick={addFile}>{addFileButton}</AddFileButton>
+          </AddFileButtonWrapper>
+        </>
+      )}
+
+      {isError && <ErrorMessageWrapper>{submitMessage}</ErrorMessageWrapper>}
+
+      {isSuccess && (
+        <SuccessMessageWrapper>{submitMessage}</SuccessMessageWrapper>
+      )}
 
       <SubmitButtonWrapper submitButtonAlignSide={submitButtonAlignSide}>
         <SubmitButton
           submitButtonGap={submitButtonGap}
           onClick={sendEmail}
-          //   type="submit"
-          //   value="Send"
+          disabled={idDisabledButton}
         >
-          {submitButtonInputComponent}
+          {submitButton}
         </SubmitButton>
       </SubmitButtonWrapper>
     </Wrapper>

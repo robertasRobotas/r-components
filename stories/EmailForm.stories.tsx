@@ -19,6 +19,35 @@ const meta: Meta = {
 
 export default meta;
 
+const submitButton = (
+  <div
+    style={{
+      width: '100px',
+      height: '30px',
+      backgroundColor: 'blue',
+      color: 'white',
+    }}
+  >
+    Send
+  </div>
+);
+
+const addFileButton = (
+  <div
+    style={{
+      width: '100px',
+      height: '30px',
+      backgroundColor: 'red',
+      color: 'white',
+      position: 'absolute',
+      bottom: '25px',
+      right: '50px',
+    }}
+  >
+    Add File
+  </div>
+);
+
 export const Button: Story = (args) => {
   const [isPressed, setIsPressed] = useState(false);
   return (
@@ -37,11 +66,15 @@ export const Button: Story = (args) => {
       submitButtonGap="30px"
       inputHeight="20px"
       textAreaHeight="200px"
-      submitButtonInputComponent={<div>x</div>}
+      submitButton={submitButton}
+      addFileButton={addFileButton}
       submitButtonAlignSide="right"
       your_service_id="service_n4iyfx2"
       your_template_id="template_f698z1l"
       your_user_id="qRe2HEfUlaZpOwGCy"
+      messageSendSuccessfully="Send Successfully"
+      messageFillAllFields="Fill all field"
+      messageUnnexpectedSendIssue="Something happened, please try later"
     />
   );
 };
