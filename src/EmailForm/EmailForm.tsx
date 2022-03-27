@@ -94,10 +94,10 @@ export const EmailForm = ({
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [idDisabledButton, setIsDisabledButton] = useState(false);
+  const [file, setFile] = useState();
 
   const addFile = () => {
     inputFile.current!.click();
-    console.log('add file');
   };
 
   const sendEmail = (e: any) => {
@@ -212,7 +212,13 @@ export const EmailForm = ({
 
       {addFileButton && (
         <>
-          <AddFileInput name="image" type="file" ref={inputFile} />
+          <AddFileInput
+            name="image"
+            type="file"
+            ref={inputFile}
+            value={file}
+            onChange={(event: any) => setFile(event.target.value)}
+          />
           <AddFileButtonWrapper>
             <AddFileButton onClick={addFile}>{addFileButton}</AddFileButton>
           </AddFileButtonWrapper>
