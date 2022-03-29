@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
-import { PhotoViewer } from '../src';
+import { PhotoViewerModal } from '../src';
 import photo1 from './assets/1.png';
 import photo2 from './assets/2.png';
 import photo3 from './assets/3.png';
@@ -9,8 +9,8 @@ import photo5 from './assets/5.png';
 import photo6 from './assets/6.png';
 
 const meta: Meta = {
-  title: 'Menu-Button',
-  component: PhotoViewer,
+  title: 'PhotoViewerModal',
+  component: PhotoViewerModal,
   argTypes: {
     children: {},
   },
@@ -21,23 +21,20 @@ const meta: Meta = {
 
 export default meta;
 
-const photoArray = [
-  photo1.src,
-  photo2.src,
-  photo3.src,
-  photo4.src,
-  photo5.src,
-  photo6.src,
-];
+const photoArray = [photo1, photo2, photo3, photo4, photo5, photo6];
 
-export const Button: Story = (args) => {
+export const PhotoViewer: Story = (args) => {
   const [isopen, setIsPressed] = useState(true);
   return (
-    <PhotoViewer
+    <PhotoViewerModal
+      isFooterPhotos={true}
       photoSrcArray={photoArray}
-      currentPhotoSrc={photo2.src}
+      currentPhotoSrc={photo4}
       isOpen={isopen}
       onClose={() => setIsPressed(false)}
+      footerPhotoWidth={200}
+      closeIconColor="#3b3b3b"
+      verticallySymetricArrowRight={<div>{'>>>>>>>'}</div>}
     />
   );
 };
