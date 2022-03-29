@@ -4,15 +4,16 @@ import styled, { css } from 'styled-components';
 import { MenuButton } from '../../src/';
 
 const ModalBackground = styled.div<any>`
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   top: 0;
   left: 0;
   background-color: ${(props) =>
     props.backgroundColor
-      ? `${props.backgroundColor}${props.backgroundOpacityPercentage}`
-      : `#6e6e6e${props.backgroundOpacityPercentage}`};
+      ? `${props.backgroundColor}`
+      : `rgba(75, 75, 75, 0.95)`};
+  z-index: 10000;
 `;
 
 const Image = styled.img<any>`
@@ -116,7 +117,7 @@ type PhotoViewerProps = {
   footerPhotoWidth?: number;
   footerPhotoHeight?: number;
 
-  backgroundOpacityPercentage?: number;
+  backgroundColor?: string;
   closeIconColor?: string;
 };
 
@@ -129,17 +130,20 @@ export const PhotoViewerModal = ({
   currentPhotoSrc,
   closeIconColor,
   verticallySymetricArrowRight,
-  backgroundOpacityPercentage = 40,
+  backgroundColor,
   onClose,
 }: PhotoViewerProps) => {
   const [currentPhotoId, setCurrentPhotoId] = useState<any>(false);
 
   useEffect(() => {
-    const clickedPhotoId = photoSrcArray.findIndex(
-      (src) => src === currentPhotoSrc
-    );
-    setCurrentPhotoId(clickedPhotoId);
-  }, []);
+    if (isOpen) {
+      const clickedPhotoId = photoSrcArray.findIndex(
+        (src) => src === currentPhotoSrc
+      );
+      console.log('clickedPhotoId', clickedPhotoId);
+      setCurrentPhotoId(clickedPhotoId);
+    }
+  }, [isOpen]);
 
   const onRightArrowClick = () => {
     if (currentPhotoId >= photoSrcArray.length - 1) {
@@ -157,11 +161,15 @@ export const PhotoViewerModal = ({
     }
   };
 
+  console.log('photoSrcArray', photoSrcArray);
+  console.log('currentPhotoSrc', currentPhotoSrc);
+
   return (
     <>
       {isOpen && (
         <ModalBackground
-          backgroundOpacityPercentage={backgroundOpacityPercentage}
+          onClick={() => onClose()}
+          backgroundColor={backgroundColor}
         >
           <MenuButton
             isPressed={true}
@@ -196,6 +204,7 @@ export const PhotoViewerModal = ({
                 >
                   {photoSrcArray.map((src, index) => (
                     <FooterPhotoElement
+                      key={index}
                       photoSrc={src}
                       onClick={() => setCurrentPhotoId(index)}
                       width={footerPhotoWidth}
