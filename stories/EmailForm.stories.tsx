@@ -48,7 +48,7 @@ const addFileButton = (
   </div>
 );
 
-export const Button: Story = (args) => {
+export const EmailFormComponent: Story = (args) => {
   const [isPressed, setIsPressed] = useState(false);
   return (
     <EmailForm
