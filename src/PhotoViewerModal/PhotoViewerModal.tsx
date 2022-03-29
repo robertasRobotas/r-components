@@ -51,7 +51,9 @@ export const PhotoViewerModal = ({
     }
   }, [isOpen]);
 
-  const onRightArrowClick = () => {
+  const onRightArrowClick = (e: any) => {
+    e.stopPropagation();
+
     if (currentPhotoId >= photoSrcArray.length - 1) {
       setCurrentPhotoId(0);
     } else {
@@ -59,7 +61,9 @@ export const PhotoViewerModal = ({
     }
   };
 
-  const onLeftArrowClick = () => {
+  const onLeftArrowClick = (e: any) => {
+    e.stopPropagation();
+
     if (currentPhotoId <= 0) {
       setCurrentPhotoId(photoSrcArray.length - 1);
     } else {
@@ -109,7 +113,10 @@ export const PhotoViewerModal = ({
                     <FooterPhotoElement
                       key={index}
                       photoSrc={src}
-                      onClick={() => setCurrentPhotoId(index)}
+                      onClick={(e: any) => {
+                        e.stopPropagation();
+                        setCurrentPhotoId(index);
+                      }}
                       width={footerPhotoWidth}
                       height={footerPhotoHeight}
                     />
