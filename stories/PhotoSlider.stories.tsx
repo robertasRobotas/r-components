@@ -24,5 +24,12 @@ export default meta;
 const photoArray = [photo1, photo2, photo3, photo4, photo5, photo6];
 
 export const PhotoSliderComponent: Story = (args) => {
-  return <PhotoSlider sliderHeight="500px" photoSrcArray={photoArray} />;
+  return (
+    <PhotoSlider
+      sliderHeight="500px"
+      photoSrcArray={photoArray}
+      photoShowDurationSec={4}
+      switcherColor="white"
+    />
+  );
 };

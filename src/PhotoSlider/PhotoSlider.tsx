@@ -1,53 +1,97 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Switcher } from './Switcher';
-
-import styled from 'styled-components';
+import { useInterval } from '../hooks/useInterval';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div<any>`
   width: 100%;
   height: 100%;
+  position: relative;
 `;
 
 export const BackgroundPhoto = styled.div<any>`
+  transition: 0.4s;
   width: 100%;
   height: ${(props: any) => props.height};
   background-image: ${(props: any) => `url(${props.photoUrl})`};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  opacity: 1;
+
+  ${(props) =>
+    props.isActiveTransition &&
+    css`
+      opacity: 0;
+    `}
 `;
 
 export const SwitcherWrapper = styled.div<any>`
   position: absolute;
+  left: 50%;
+  bottom: 45px;
 `;
 
 type PhotoSliderProps = {
   photoSrcArray: Array<String>;
   sliderHeight: string;
   switcherType?: 'circles' | 'pagination';
+  switcherColor?: string;
+  switcherSize?: string;
+  photoShowDurationSec: number;
 };
 
 export const PhotoSlider = ({
   photoSrcArray,
   sliderHeight,
   switcherType,
+  switcherSize,
+  photoShowDurationSec,
+  switcherColor,
 }: PhotoSliderProps) => {
+  const TRANSITION_TIME_SEC = 0.3;
   const [currentPhotoId, setCurrentPhotoId] = useState(0);
+  const [isActiveTransition, setActiveTransition] = useState(false);
+  const [count, setCount] = useState(0);
 
-  const openNextPhoto = () => {
+  useInterval(() => {
+    openNextPhoto();
+    setCount((count) => count + 1);
+  }, photoShowDurationSec * 1000);
+
+  const resetInterval = () => setCount(0);
+
+  function timeout(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  const openNextPhoto = async () => {
+    setActiveTransition(true);
+    console.log('1');
+    await timeout(TRANSITION_TIME_SEC * 1000 * 2);
+
     if (currentPhotoId >= photoSrcArray.length - 1) {
       setCurrentPhotoId(0);
     } else {
       setCurrentPhotoId(currentPhotoId + 1);
+      console.log('2');
     }
+    await timeout(TRANSITION_TIME_SEC * 1000);
+
+    setActiveTransition(false);
   };
 
-  const openPreviousPhoto = () => {
+  const openPreviousPhoto = async () => {
+    setActiveTransition(true);
+    await timeout((TRANSITION_TIME_SEC * 1000) / 2);
     if (currentPhotoId <= 0) {
       setCurrentPhotoId(photoSrcArray.length - 1);
     } else {
       setCurrentPhotoId(currentPhotoId - 1);
     }
+    await timeout((TRANSITION_TIME_SEC * 1000) / 2);
+
+    setActiveTransition(false);
   };
 
   const openSpecificPhoto = (index: number) => {
@@ -56,15 +100,23 @@ export const PhotoSlider = ({
 
   return (
     <Wrapper>
-      <BackgroundPhoto height={sliderHeight} photoUrl={photoSrcArray[0]} />
+      <BackgroundPhoto
+        height={sliderHeight}
+        photoUrl={photoSrcArray[currentPhotoId]}
+        onClick={openNextPhoto}
+        isActiveTransition={isActiveTransition}
+      />
       <SwitcherWrapper>
         <Switcher
-          switcherType={switcherType}
+          size={switcherSize}
+          switcherType={switcherType || 'pagination'}
           currentPhotoNumber={currentPhotoId + 1}
           photosLength={photoSrcArray.length}
           openNextPhotoClick={openNextPhoto}
           openPreviousPhotoClick={openPreviousPhoto}
           onSpecificPhotoClick={openSpecificPhoto}
+          color={switcherColor}
+          resetInterval={resetInterval}
         />
       </SwitcherWrapper>
     </Wrapper>
