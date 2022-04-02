@@ -28,7 +28,7 @@ export const PhotoSliderComponent: Story = (args) => {
     <PhotoSlider
       sliderHeight="500px"
       photoSrcArray={photoArray}
-      photoShowDurationSec={4}
+      photoShowDurationSec={6}
       switcherColor="white"
     />
   );

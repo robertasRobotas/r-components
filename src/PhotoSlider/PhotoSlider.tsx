@@ -52,14 +52,11 @@ export const PhotoSlider = ({
   const TRANSITION_TIME_SEC = 0.3;
   const [currentPhotoId, setCurrentPhotoId] = useState(0);
   const [isActiveTransition, setActiveTransition] = useState(false);
-  const [count, setCount] = useState(0);
 
-  useInterval(() => {
+  const resetInterval = useInterval(() => {
+    console.log('currentPhotoId', currentPhotoId);
     openNextPhoto();
-    setCount((count) => count + 1);
   }, photoShowDurationSec * 1000);
-
-  const resetInterval = () => setCount(0);
 
   function timeout(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -67,14 +64,12 @@ export const PhotoSlider = ({
 
   const openNextPhoto = async () => {
     setActiveTransition(true);
-    console.log('1');
     await timeout(TRANSITION_TIME_SEC * 1000 * 2);
 
     if (currentPhotoId >= photoSrcArray.length - 1) {
       setCurrentPhotoId(0);
     } else {
       setCurrentPhotoId(currentPhotoId + 1);
-      console.log('2');
     }
     await timeout(TRANSITION_TIME_SEC * 1000);
 
@@ -83,13 +78,13 @@ export const PhotoSlider = ({
 
   const openPreviousPhoto = async () => {
     setActiveTransition(true);
-    await timeout((TRANSITION_TIME_SEC * 1000) / 2);
+    await timeout(TRANSITION_TIME_SEC * 1000 * 2);
     if (currentPhotoId <= 0) {
       setCurrentPhotoId(photoSrcArray.length - 1);
     } else {
       setCurrentPhotoId(currentPhotoId - 1);
     }
-    await timeout((TRANSITION_TIME_SEC * 1000) / 2);
+    await timeout(TRANSITION_TIME_SEC * 1000);
 
     setActiveTransition(false);
   };
@@ -103,7 +98,10 @@ export const PhotoSlider = ({
       <BackgroundPhoto
         height={sliderHeight}
         photoUrl={photoSrcArray[currentPhotoId]}
-        onClick={openNextPhoto}
+        onClick={() => {
+          openNextPhoto();
+          resetInterval();
+        }}
         isActiveTransition={isActiveTransition}
       />
       <SwitcherWrapper>
