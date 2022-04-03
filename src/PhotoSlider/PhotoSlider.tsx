@@ -54,7 +54,6 @@ export const PhotoSlider = ({
   const [isActiveTransition, setActiveTransition] = useState(false);
 
   const resetInterval = useInterval(() => {
-    console.log('currentPhotoId', currentPhotoId);
     openNextPhoto();
   }, photoShowDurationSec * 1000);
 
