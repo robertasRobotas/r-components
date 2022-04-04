@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Navbar } from '../src';
+import logo from './assets/davidavi-logo-black.png';
 
 const meta: Meta = {
   title: 'Navbar',
@@ -30,6 +31,10 @@ export const PhotoSliderComponent: Story = (args) => {
       maxWidth={'1130px'}
       mobileVersionMaxWidth="767px"
       backgroundColor="white"
+      logoSrc={logo}
+      logoWidthPx={240}
+      minWebsiteWidth="400px"
+      fontSize="16px"
     />
   );
 };

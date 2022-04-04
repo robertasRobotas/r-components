@@ -13,8 +13,10 @@ type NavbarProps = {
   mobileVersionMaxWidth: string;
   backgroundColor?: string;
   fontColor?: string;
+  fontSize?: string;
   logoSrc?: string;
-  logoWidth?: string;
+  logoWidthPx?: number;
+  minWebsiteWidth?: string;
 };
 
 export const Navbar = ({
@@ -25,7 +27,9 @@ export const Navbar = ({
   backgroundColor,
   fontColor,
   logoSrc,
-  logoWidth,
+  logoWidthPx,
+  minWebsiteWidth,
+  fontSize,
 }: NavbarProps) => {
   if (type === 'logo-middle-navbar' && oneDimentionalMenuLinks) {
     return (
@@ -35,8 +39,10 @@ export const Navbar = ({
         mobileVersionMaxWidth={mobileVersionMaxWidth}
         backgroundColor={backgroundColor}
         fontColor={fontColor}
+        fontSize={fontSize}
         logoSrc={logoSrc}
-        logoWidth={logoWidth}
+        logoWidth={logoWidthPx}
+        minWebsiteWidth={minWebsiteWidth}
       />
     );
   }
