@@ -28,9 +28,9 @@ export const PhotoSliderComponent: Story = (args) => {
     <Navbar
       type="logo-middle-navbar"
       oneDimentionalMenuLinks={oneDimentionalMenuLinks}
-      maxWidth={'1130px'}
+      maxWidth={'1200px'}
       mobileVersionMaxWidth="767px"
-      backgroundColor="white"
+      backgroundColor="#f2f2f2"
       logoSrc={logo}
       logoWidthPx={240}
       minWebsiteWidth="400px"

@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div<any>`
   min-width: ${(props) => props.minWebsiteWidth};
-
   position: relative;
   margin: auto;
   max-width: ${(props) => (props.maxWidth ? props.maxWidth : '1200px')};
@@ -10,6 +9,10 @@ export const Wrapper = styled.div<any>`
     props.backgroundColor ? props.backgroundColor : 'white'};
   color: ${(props) => (props.fontColor ? props.fontColor : 'black')};
   height: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  box-sizing: border-box;
 
   @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
     position: absolute;
@@ -35,14 +38,17 @@ export const LinksWrapper = styled.div<any>`
   align-items: center;
   justify-content: space-between;
   min-width: 400px;
+  height: 100%;
 
   @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
-    position: absolute;
+    position: relative;
     top: 150px;
     text-align: center;
     width: 100%;
     justify-content: center;
     gap: 45px;
+    height: auto;
+    box-sizing: border-box;
 
     display: grid;
     visibility: hidden;
