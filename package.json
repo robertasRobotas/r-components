@@ -72,6 +72,7 @@
     "@emailjs/browser": "^3.4.0",
     "@types/styled-components": "^5.1.24",
     "react-indiana-drag-scroll": "^2.1.0",
+    "react-responsive-carousel": "^3.2.23",
     "styled-components": "^5.3.3"
   }
 }
