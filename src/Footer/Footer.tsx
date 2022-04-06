@@ -16,6 +16,9 @@ type FooterProps = {
   logoSrc?: string;
   logoWidthPx?: number;
   minWebsiteWidth?: string;
+  color?: string;
+  letterSpacing?: string;
+  socialHoverColor?: string;
 
   email?: string;
   phoneNumber?: string;
@@ -32,11 +35,14 @@ export const Footer = ({
   logoSrc,
   logoWidthPx,
   minWebsiteWidth,
+  letterSpacing,
   fontSize,
   email,
   phoneNumber,
   copyRight,
   socialMedia,
+  color,
+  socialHoverColor,
 }: FooterProps) => {
   if (
     type === 'logo-contacts-footer' &&
@@ -54,11 +60,14 @@ export const Footer = ({
         fontSize={fontSize}
         logoSrc={logoSrc}
         logoWidthPx={logoWidthPx}
+        color={color}
+        socialHoverColor={socialHoverColor}
         minWebsiteWidth={minWebsiteWidth}
         socialMedia={socialMedia}
         email={email}
         phoneNumber={phoneNumber}
         copyRight={copyRight}
+        letterSpacing={letterSpacing}
       />
     );
   }

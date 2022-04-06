@@ -27,13 +27,19 @@ export const FooterComponent: Story = (args) => {
     <Footer
       type="logo-contacts-footer"
       socialMedia={socialMedia}
-      maxWidth={'1200px'}
+      maxWidth="1200px"
       mobileVersionMaxWidth="767px"
-      backgroundColor="#f2f2f2"
+      backgroundColor="#DFE4ED"
       logoSrc={logo}
-      logoWidthPx={240}
-      minWebsiteWidth="400px"
+      logoWidthPx={200}
       fontSize="16px"
+      email="davidavi.morta@gmail.com"
+      phoneNumber="+370 607 58455"
+      copyRight="© davidavi 2022"
+      minWebsiteWidth={'375px'}
+      color="#3E3E3E"
+      socialHoverColor="#6e6e6e"
+      letterSpacing="2px"
     />
   );
 };

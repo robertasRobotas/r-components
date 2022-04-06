@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SocialFacebook, SocialGmail, SocialInstagram } from './asset';
 
 type SocialMediaProps = {
@@ -10,30 +10,73 @@ type SocialIconsProps = {
   width?: string;
   height?: string;
   socialMedia: Array<SocialMediaProps>;
+  color?: string;
+  hoverColor?: string;
 };
 
-const selectIcon = (type: string) => {
+type SocialIconProps = {
+  link: string;
+  type: string;
+  color?: string;
+  hoverColor?: string;
+  width?: string;
+  height?: string;
+};
+
+const selectIcon = (type: string, color: string) => {
   switch (type) {
     case 'facebook':
-      return <SocialFacebook color="black" />;
+      return <SocialFacebook color={color} />;
     case 'instagram':
-      return <SocialInstagram color="black" />;
+      return <SocialInstagram color={color} />;
     case 'gmail':
-      return <SocialGmail color="black" />;
+      return <SocialGmail color={color} />;
     default:
       console.log(`no such social icon type`);
   }
+};
+
+const SocialIcon = ({
+  link,
+  type,
+  width = '20px',
+  height = '20px',
+  color = 'black',
+  hoverColor = 'black',
+}: SocialIconProps) => {
+  const [currentColor, setCurrentColor] = useState(color);
+  return (
+    <>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseEnter={() => setCurrentColor(hoverColor)}
+        onMouseLeave={() => setCurrentColor(color)}
+        href={link}
+      >
+        {selectIcon(type, currentColor)}
+      </a>
+    </>
+  );
 };
 
 export const SocialIcons = ({
   socialMedia,
   width = '20px',
   height = '20px',
+  color = 'black',
+  hoverColor = 'black',
 }: SocialIconsProps) => {
+  const [currentColor, setCurrentColor] = useState(color);
   return (
     <>
       {socialMedia.map((socMediaItem) => (
-        <a href={socMediaItem.link}>{selectIcon(socMediaItem.type)}</a>
+        <SocialIcon
+          link={socMediaItem.link}
+          type={socMediaItem.type}
+          color={color}
+          hoverColor={hoverColor}
+        />
       ))}
     </>
   );
