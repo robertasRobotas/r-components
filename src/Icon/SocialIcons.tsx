@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from './Icon';
+import { SocialFacebook, SocialGmail, SocialInstagram } from './asset';
 
 type SocialMediaProps = {
   type: string;
@@ -12,13 +12,28 @@ type SocialIconsProps = {
   socialMedia: Array<SocialMediaProps>;
 };
 
-export const SocialIcons = ({ socialMedia }: SocialIconsProps) => {
+const selectIcon = (type: string) => {
+  switch (type) {
+    case 'facebook':
+      return <SocialFacebook color="black" />;
+    case 'instagram':
+      return <SocialInstagram color="black" />;
+    case 'gmail':
+      return <SocialGmail color="black" />;
+    default:
+      console.log(`no such social icon type`);
+  }
+};
+
+export const SocialIcons = ({
+  socialMedia,
+  width = '20px',
+  height = '20px',
+}: SocialIconsProps) => {
   return (
     <>
       {socialMedia.map((socMediaItem) => (
-        <a href={socMediaItem.link}>
-          <Icon imgSrc={'xxxxx'} />
-        </a>
+        <a href={socMediaItem.link}>{selectIcon(socMediaItem.type)}</a>
       ))}
     </>
   );
