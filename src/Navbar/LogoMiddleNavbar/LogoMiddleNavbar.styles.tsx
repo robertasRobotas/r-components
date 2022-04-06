@@ -1,6 +1,12 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div<any>`
+  width: 100%;
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : 'white'};
+`;
+
+export const ContentWrapper = styled.div<any>`
   min-width: ${(props) => props.minWebsiteWidth};
   position: relative;
   margin: auto;

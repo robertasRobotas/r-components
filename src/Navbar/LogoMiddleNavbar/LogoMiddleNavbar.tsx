@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { MenuButton } from '../../MenuButton/MenuButton';
 import {
-  Wrapper,
+  ContentWrapper,
   LinksWrapper,
   Link,
   DesktopLogoWrapper,
   Logo,
   MobileLogoWrapper,
+  Wrapper,
 } from './LogoMiddleNavbar.styles';
 
 type OneDimentionalMenuLinks = {
@@ -40,43 +41,19 @@ export const LogoMiddleNavbar = ({
   const [isMobileNavbarOpen, setIsMobileNavbarOpen] = useState(false);
 
   return (
-    <Wrapper
-      className="wrapper"
-      maxWidth={maxWidth}
-      backgroundColor={backgroundColor}
-      fontColor={fontColor}
-      mobileVersionMaxWidth={mobileVersionMaxWidth}
-      isMobileNavbarOpen={isMobileNavbarOpen}
-      minWebsiteWidth={minWebsiteWidth}
-    >
-      <MobileLogoWrapper
+    <Wrapper backgroundColor={backgroundColor}>
+      <ContentWrapper
+        className="wrapper"
+        maxWidth={maxWidth}
+        backgroundColor={backgroundColor}
+        fontColor={fontColor}
         mobileVersionMaxWidth={mobileVersionMaxWidth}
-        className="mobile-logo-wrapper"
-        href="/"
-      >
-        <Logo
-          mobileVersionMaxWidth={mobileVersionMaxWidth}
-          src={logoSrc}
-          logoWidth={logoWidth}
-        />
-      </MobileLogoWrapper>
-
-      <LinksWrapper
-        fontSize={fontSize}
         isMobileNavbarOpen={isMobileNavbarOpen}
-        className="links-wrapper"
-        mobileVersionMaxWidth={mobileVersionMaxWidth}
+        minWebsiteWidth={minWebsiteWidth}
       >
-        <Link href={oneDimentionalMenuLinks[0].link}>
-          {oneDimentionalMenuLinks[0].title}
-        </Link>
-        <Link href={oneDimentionalMenuLinks[1].link}>
-          {oneDimentionalMenuLinks[1].title}
-        </Link>
-
-        <DesktopLogoWrapper
+        <MobileLogoWrapper
           mobileVersionMaxWidth={mobileVersionMaxWidth}
-          className="desktop-logo-wrapper"
+          className="mobile-logo-wrapper"
           href="/"
         >
           <Logo
@@ -84,22 +61,48 @@ export const LogoMiddleNavbar = ({
             src={logoSrc}
             logoWidth={logoWidth}
           />
-        </DesktopLogoWrapper>
-        <Link href={oneDimentionalMenuLinks[2].link}>
-          {oneDimentionalMenuLinks[2].title}
-        </Link>
-        <Link href={oneDimentionalMenuLinks[3].link}>
-          {oneDimentionalMenuLinks[3].title}
-        </Link>
-      </LinksWrapper>
+        </MobileLogoWrapper>
 
-      <MenuButton
-        isPressed={isMobileNavbarOpen}
-        onClick={() => setIsMobileNavbarOpen(!isMobileNavbarOpen)}
-        right="50px"
-        top="40px"
-        maxDisplaySize={mobileVersionMaxWidth}
-      />
+        <LinksWrapper
+          fontSize={fontSize}
+          isMobileNavbarOpen={isMobileNavbarOpen}
+          className="links-wrapper"
+          mobileVersionMaxWidth={mobileVersionMaxWidth}
+        >
+          <Link href={oneDimentionalMenuLinks[0].link}>
+            {oneDimentionalMenuLinks[0].title}
+          </Link>
+          <Link href={oneDimentionalMenuLinks[1].link}>
+            {oneDimentionalMenuLinks[1].title}
+          </Link>
+
+          <DesktopLogoWrapper
+            mobileVersionMaxWidth={mobileVersionMaxWidth}
+            className="desktop-logo-wrapper"
+            href="/"
+          >
+            <Logo
+              mobileVersionMaxWidth={mobileVersionMaxWidth}
+              src={logoSrc}
+              logoWidth={logoWidth}
+            />
+          </DesktopLogoWrapper>
+          <Link href={oneDimentionalMenuLinks[2].link}>
+            {oneDimentionalMenuLinks[2].title}
+          </Link>
+          <Link href={oneDimentionalMenuLinks[3].link}>
+            {oneDimentionalMenuLinks[3].title}
+          </Link>
+        </LinksWrapper>
+
+        <MenuButton
+          isPressed={isMobileNavbarOpen}
+          onClick={() => setIsMobileNavbarOpen(!isMobileNavbarOpen)}
+          right="50px"
+          top="40px"
+          maxDisplaySize={mobileVersionMaxWidth}
+        />
+      </ContentWrapper>
     </Wrapper>
   );
 };

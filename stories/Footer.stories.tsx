@@ -4,7 +4,7 @@ import { Footer } from '../src';
 import logo from './assets/davidavi-logo-black.png';
 
 const meta: Meta = {
-  title: 'Navbar',
+  title: 'Footer',
   component: Footer,
   argTypes: {
     children: {},
@@ -22,7 +22,7 @@ const socialMedia = [
   { type: 'gmail', link: 'https://mail.google.com/mail/u/0/#inbox' },
 ];
 
-export const PhotoSliderComponent: Story = (args) => {
+export const FooterComponent: Story = (args) => {
   return (
     <Footer
       type="logo-contacts-footer"
