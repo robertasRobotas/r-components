@@ -3,8 +3,8 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import styled, { css } from 'styled-components';
 import photo1 from '../../../stories/assets/1.png';
-import photo2 from '../../../stories/assets/2.png';
-import photo3 from '../../../stories/assets/3.png';
+import { RightArrow } from '../assets/rightArrow';
+import { LeftArrow } from '../assets/leftArrow';
 
 export const Wrapper = styled.div<any>`
   padding-top: 200px;
@@ -91,11 +91,9 @@ export const SimpleCarouselReview = ({
   console.log('reviews', reviews);
   return (
     <Carousel
-      renderArrowPrev={(increment) => (
-        <div onClick={() => increment()}>xxxx</div>
-      )}
+      renderArrowPrev={(increment) => <LeftArrow onClick={() => increment()} />}
       renderArrowNext={(increment) => (
-        <div onClick={() => increment()}>xxxx</div>
+        <RightArrow onClick={() => increment()} />
       )}
     >
       <Wrapper>
