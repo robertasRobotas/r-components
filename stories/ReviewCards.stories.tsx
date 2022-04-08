@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import { ReviewCards } from '../src';
 
 const meta: Meta = {
-  title: 'Footer',
+  title: 'ReviewCard',
   component: ReviewCards,
   argTypes: {
     children: {},
@@ -38,7 +38,7 @@ const reviews = [
   },
 ];
 
-export const FooterComponent: Story = (args) => {
+export const ReviewCardComponent: Story = (args) => {
   return (
     <ReviewCards
       type="simple-carousel-review"
