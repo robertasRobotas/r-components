@@ -11,8 +11,8 @@ export const LeftArrow = ({ color, width, height, onClick }: SocialSVGType) => (
   <svg
     onClick={onClick}
     xmlns="http://www.w3.org/2000/svg"
-    width="36.024"
-    height="64.566"
+    width="20.024"
+    height="38.566"
     viewBox="0 0 36.024 64.566"
   >
     <path

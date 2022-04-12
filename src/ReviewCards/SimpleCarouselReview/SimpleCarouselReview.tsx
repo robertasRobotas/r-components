@@ -2,12 +2,12 @@ import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import styled, { css } from 'styled-components';
-import photo1 from '../../../stories/assets/1.png';
 import { RightArrow } from '../assets/rightArrow';
 import { LeftArrow } from '../assets/leftArrow';
 
 export const Wrapper = styled.div<any>`
   padding-top: 200px;
+  color: ${(props) => props.color};
 `;
 
 export const ItemsWrapper = styled.div<any>`
@@ -15,7 +15,9 @@ export const ItemsWrapper = styled.div<any>`
   height: auto;
   min-height: 430px;
 
-  background-color: #dfe4ed;
+  background-color: ${(props) =>
+    props.letterSpacing ? props.letterSpacing : ' #dfe4ed'};
+
   padding-left: 80px;
   padding-right: 80px;
   padding-bottom: 40px;
@@ -44,7 +46,9 @@ export const Photo = styled.div<any>`
   bottom: 120px;
 `;
 
-export const TextWrapper = styled.div<any>``;
+export const TextWrapper = styled.div<any>`
+  letter-spacing: ${(props) => props.letterSpacing};
+`;
 
 export const Title = styled.div<any>`
   font-size: 40px;
@@ -64,14 +68,41 @@ export const ReviewText = styled.div<any>`
   margin-top: 30px;
 `;
 
+export const RightArrowWrapper = styled.div<any>`
+  z-index: 10;
+  position: absolute;
+  top: 60%;
+  right: 40px;
+  cursor: pointer;
+`;
+
+export const LeftArrowWrapper = styled.div<any>`
+  z-index: 10;
+  position: absolute;
+  top: 60%;
+  left: 40px;
+  cursor: pointer;
+`;
+
 type Review = {
   reviewText: string;
   reviewerName: string;
-  reviewerPhotoSrc?: string;
+  photo?: any;
 };
 
-type ReviewCardsProps = {
+type ReviewProps = {
+  reviewText: string;
+  reviewerName: string;
+  photo: any;
+
+  color?: string;
+  letterSpacing?: string;
+  backgroundColor?: string;
+};
+
+type ReviewsProps = {
   reviews: Array<Review>;
+  autoPlay: boolean;
 
   color?: string;
   intervalTime?: number;
@@ -80,43 +111,66 @@ type ReviewCardsProps = {
   backgroundColor?: string;
 };
 
-export const SimpleCarouselReview = ({
+export const ReviewCard = ({
+  reviewText,
+  reviewerName,
+  photo,
+  color,
+  letterSpacing,
+  backgroundColor,
+}: ReviewProps) => {
+  return (
+    <Wrapper color={color}>
+      <ItemsWrapper backgroundColor={backgroundColor}>
+        <ContentWrapper>
+          <PhotoWrapper>
+            <Photo photoUrl={photo} />
+          </PhotoWrapper>
+          <TextWrapper letterSpacing={letterSpacing}>
+            <Title>{reviewerName}</Title>
+            <ReviewText>{reviewText}</ReviewText>
+          </TextWrapper>
+        </ContentWrapper>
+      </ItemsWrapper>
+    </Wrapper>
+  );
+};
+
+export const SimpleCarouselReviews = ({
+  autoPlay,
   reviews,
   color,
   intervalTime,
   rightArrowComponent,
   letterSpacing,
   backgroundColor,
-}: ReviewCardsProps) => {
+}: ReviewsProps) => {
   console.log('reviews', reviews);
   return (
     <Carousel
-      renderArrowPrev={(increment) => <LeftArrow onClick={() => increment()} />}
+      autoPlay={autoPlay}
+      interval={intervalTime}
+      renderArrowPrev={(increment) => (
+        <LeftArrowWrapper>
+          <LeftArrow onClick={() => increment()} />
+        </LeftArrowWrapper>
+      )}
       renderArrowNext={(increment) => (
-        <RightArrow onClick={() => increment()} />
+        <RightArrowWrapper>
+          <RightArrow onClick={() => increment()} />
+        </RightArrowWrapper>
       )}
     >
-      <Wrapper>
-        <ItemsWrapper>
-          <ContentWrapper>
-            <PhotoWrapper>
-              <Photo photoUrl={photo1} />
-            </PhotoWrapper>
-            <TextWrapper>
-              <Title>G & J</Title>
-              <ReviewText>
-                Pati geriausia diena po vestuvių šventės – diena, kai gavome
-                vestuvių nuotraukas. Morta išpildė mūsų lūkesčius visu 100% –
-                jos yra atspindys to, kas mes esam ir ko mes norėjom. Tikros,
-                nuoširdžios, stilingos ir juokingos. Ačiū, kad vienintelę ir
-                nepakartojamą dieną galime išgyventi dar kartą nors ir kasdien!
-              </ReviewText>
-            </TextWrapper>
-          </ContentWrapper>
-        </ItemsWrapper>
-      </Wrapper>
-
-      <Wrapper>d</Wrapper>
+      {reviews.map((review) => (
+        <ReviewCard
+          reviewText={review.reviewText}
+          reviewerName={review.reviewerName}
+          photo={review.photo}
+          color={color}
+          backgroundColor={backgroundColor}
+          letterSpacing={letterSpacing}
+        />
+      ))}
     </Carousel>
   );
 };

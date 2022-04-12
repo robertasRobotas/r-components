@@ -1,5 +1,5 @@
 import React from 'react';
-import { SimpleCarouselReview } from './SimpleCarouselReview/SimpleCarouselReview';
+import { SimpleCarouselReviews } from './SimpleCarouselReview/SimpleCarouselReview';
 
 type Review = {
   reviewText: string;
@@ -11,6 +11,7 @@ type ReviewCardsProps = {
   type: 'simple-carousel-review';
   reviews: Array<Review>;
 
+  autoPlay?: boolean;
   minWebsiteWidth: string;
   mobileVersionMaxWidth: string;
   color?: string;
@@ -28,10 +29,12 @@ export const ReviewCards = ({
   rightArrowComponent,
   letterSpacing,
   backgroundColor,
+  autoPlay,
 }: ReviewCardsProps) => {
   if (type === 'simple-carousel-review' && reviews) {
     return (
-      <SimpleCarouselReview
+      <SimpleCarouselReviews
+        autoPlay={autoPlay || false}
         reviews={reviews}
         color={color}
         intervalTime={intervalTime}

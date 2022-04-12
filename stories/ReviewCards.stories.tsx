@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { ReviewCards } from '../src';
+import photo1 from './assets/1.png';
 
 const meta: Meta = {
   title: 'ReviewCard',
@@ -17,24 +18,22 @@ export default meta;
 
 const reviews = [
   {
-    reviewText: 'some good review',
-    reviewerName: 'Tom',
-    reviewerPhotoSrc: 'reviewerPhotoSrc',
+    reviewerName: 'G & J',
+    reviewText:
+      'Pati geriausia diena po vestuvių šventės – diena, kai gavome vestuvių nuotraukas. Morta išpildė mūsų lūkesčius visu 100% – jos yra atspindys to, kas mes esam ir ko mes norėjom. Tikros, nuoširdžios, stilingos ir juokingos. Ačiū, kad vienintelę ir nepakartojamą dieną galime išgyventi dar kartą nors ir kasdien!',
+    photo: photo1,
   },
   {
-    reviewText: 'some good review',
-    reviewerName: 'Tom',
-    reviewerPhotoSrc: 'reviewerPhotoSrc',
+    reviewerName: 'G & J',
+    reviewText:
+      'Pati geriausia diena po vestuvių šventės – diena, kai gavome vestuvių nuotraukas. Morta išpildė mūsų lūkesčius visu 100% – jos yra atspindys to, kas mes esam ir ko mes norėjom. Tikros, nuoširdžios, stilingos ir juokingos. Ačiū, kad vienintelę ir nepakartojamą dieną galime išgyventi dar kartą nors ir kasdien!',
+    photo: photo1,
   },
   {
-    reviewText: 'some good review',
-    reviewerName: 'Tom',
-    reviewerPhotoSrc: 'reviewerPhotoSrc',
-  },
-  {
-    reviewText: 'some good review',
-    reviewerName: 'Tom',
-    reviewerPhotoSrc: 'reviewerPhotoSrc',
+    reviewerName: 'G & J',
+    reviewText:
+      'Pati geriausia diena po vestuvių šventės – diena, kai gavome vestuvių nuotraukas. Morta išpildė mūsų lūkesčius visu 100% – jos yra atspindys to, kas mes esam ir ko mes norėjom. Tikros, nuoširdžios, stilingos ir juokingos. Ačiū, kad vienintelę ir nepakartojamą dieną galime išgyventi dar kartą nors ir kasdien!',
+    photo: photo1,
   },
 ];
 
@@ -48,6 +47,8 @@ export const ReviewCardComponent: Story = (args) => {
       minWebsiteWidth={'375px'}
       color="#3E3E3E"
       letterSpacing="2px"
+      intervalTime={6000}
+      autoPlay={true}
     />
   );
 };
