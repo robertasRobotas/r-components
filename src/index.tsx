@@ -7,3 +7,4 @@ export { Icon } from './Icon/Icon';
 export { SocialIcons } from './Icon/SocialIcons';
 export { Footer } from './Footer/Footer';
 export { ReviewCards } from './ReviewCards/ReviewCards';
+export { PhotoLine } from './PhotoLine/PhotoLine';
