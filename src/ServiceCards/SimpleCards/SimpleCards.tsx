@@ -15,11 +15,13 @@ type Card = {
 
 type SimpleCardsProps = {
   cardsArray: Array<Card>;
+  color?: string;
   backgroundColor?: string;
 };
 
 export const SimpleCards = ({
   cardsArray,
+  color,
   backgroundColor,
 }: SimpleCardsProps) => {
   return (
@@ -29,6 +31,7 @@ export const SimpleCards = ({
           photo={card.photo}
           price={card.price}
           services={card.services}
+          color={color}
           backgroundColor={backgroundColor}
         />
       ))}

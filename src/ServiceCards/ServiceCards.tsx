@@ -10,17 +10,23 @@ type Card = {
 type ServiceCardsProps = {
   type: 'simple-card';
   cardsArray: Array<Card>;
-  backgroundColor: string;
+  color?: string;
+  backgroundColor?: string;
 };
 
 export const ServiceCards = ({
   type,
   cardsArray,
+  color,
   backgroundColor,
 }: ServiceCardsProps) => {
   if (type === 'simple-card') {
     return (
-      <SimpleCards cardsArray={cardsArray} backgroundColor={backgroundColor} />
+      <SimpleCards
+        cardsArray={cardsArray}
+        color={color}
+        backgroundColor={backgroundColor}
+      />
     );
   }
   return null;
