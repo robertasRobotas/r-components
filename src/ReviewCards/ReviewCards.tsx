@@ -30,6 +30,7 @@ export const ReviewCards = ({
   letterSpacing,
   backgroundColor,
   autoPlay,
+  mobileVersionMaxWidth,
 }: ReviewCardsProps) => {
   if (type === 'simple-carousel-review' && reviews) {
     return (
@@ -41,6 +42,7 @@ export const ReviewCards = ({
         rightArrowComponent={rightArrowComponent}
         letterSpacing={letterSpacing}
         backgroundColor={backgroundColor}
+        mobileVersionMaxWidth={mobileVersionMaxWidth}
       />
     );
   }

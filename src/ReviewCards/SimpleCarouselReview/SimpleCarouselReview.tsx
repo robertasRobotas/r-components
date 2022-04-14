@@ -5,6 +5,10 @@ import styled, { css } from 'styled-components';
 import { RightArrow } from '../assets/rightArrow';
 import { LeftArrow } from '../assets/leftArrow';
 
+export const CarouselWrapper = styled.div<any>`
+  min-width: 375px;
+`;
+
 export const Wrapper = styled.div<any>`
   padding-top: 200px;
   color: ${(props) => props.color};
@@ -21,6 +25,11 @@ export const ItemsWrapper = styled.div<any>`
   padding-left: 80px;
   padding-right: 80px;
   padding-bottom: 40px;
+
+  @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
+    padding-left: 18%;
+    padding-right: 18%;
+  }
 `;
 
 export const ContentWrapper = styled.div<any>`
@@ -29,10 +38,25 @@ export const ContentWrapper = styled.div<any>`
   gap: 3%;
   justify-content: center;
   margin: auto;
+
+  @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
+    display: grid;
+  }
 `;
 
 export const PhotoWrapper = styled.div<any>`
   height: 0;
+  width: 35%;
+  order: 1;
+  @media (max-width: 1000px) {
+    width: 70%;
+  }
+
+  @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
+    height: 400px;
+    order: 2;
+    width: 100%;
+  }
 `;
 
 export const Photo = styled.div<any>`
@@ -41,13 +65,23 @@ export const Photo = styled.div<any>`
   background-size: cover;
   background-position: center;
   height: 500px;
-  width: 375px;
+  width: 100%;
   position: relative;
   bottom: 120px;
+
+  @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
+    height: 400px;
+    bottom: 0;
+  }
 `;
 
 export const TextWrapper = styled.div<any>`
   letter-spacing: ${(props) => props.letterSpacing};
+  order: 2;
+
+  @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
+    order: 1;
+  }
 `;
 
 export const Title = styled.div<any>`
@@ -63,9 +97,13 @@ export const ReviewText = styled.div<any>`
   max-width: 800px;
   padding: 50px 30px;
   background: #fcfcfc;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.8;
   margin-top: 30px;
+
+  @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
+    font-size: 17px;
+  }
 `;
 
 export const RightArrowWrapper = styled.div<any>`
@@ -74,6 +112,10 @@ export const RightArrowWrapper = styled.div<any>`
   top: 60%;
   right: 40px;
   cursor: pointer;
+
+  @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
+    right: 20px;
+  }
 `;
 
 export const LeftArrowWrapper = styled.div<any>`
@@ -82,6 +124,10 @@ export const LeftArrowWrapper = styled.div<any>`
   top: 60%;
   left: 40px;
   cursor: pointer;
+
+  @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
+    left: 20px;
+  }
 `;
 
 type Review = {
@@ -94,7 +140,7 @@ type ReviewProps = {
   reviewText: string;
   reviewerName: string;
   photo: any;
-
+  mobileVersionMaxWidth: string;
   color?: string;
   letterSpacing?: string;
   backgroundColor?: string;
@@ -103,7 +149,7 @@ type ReviewProps = {
 type ReviewsProps = {
   reviews: Array<Review>;
   autoPlay: boolean;
-
+  mobileVersionMaxWidth: string;
   color?: string;
   intervalTime?: number;
   rightArrowComponent?: string;
@@ -118,17 +164,29 @@ export const ReviewCard = ({
   color,
   letterSpacing,
   backgroundColor,
+  mobileVersionMaxWidth,
 }: ReviewProps) => {
   return (
     <Wrapper color={color}>
-      <ItemsWrapper backgroundColor={backgroundColor}>
-        <ContentWrapper>
-          <PhotoWrapper>
-            <Photo photoUrl={photo} />
+      <ItemsWrapper
+        backgroundColor={backgroundColor}
+        mobileVersionMaxWidth={mobileVersionMaxWidth}
+      >
+        <ContentWrapper mobileVersionMaxWidth={mobileVersionMaxWidth}>
+          <PhotoWrapper mobileVersionMaxWidth={mobileVersionMaxWidth}>
+            <Photo
+              photoUrl={photo}
+              mobileVersionMaxWidth={mobileVersionMaxWidth}
+            />
           </PhotoWrapper>
-          <TextWrapper letterSpacing={letterSpacing}>
+          <TextWrapper
+            letterSpacing={letterSpacing}
+            mobileVersionMaxWidth={mobileVersionMaxWidth}
+          >
             <Title>{reviewerName}</Title>
-            <ReviewText>{reviewText}</ReviewText>
+            <ReviewText mobileVersionMaxWidth={mobileVersionMaxWidth}>
+              {reviewText}
+            </ReviewText>
           </TextWrapper>
         </ContentWrapper>
       </ItemsWrapper>
@@ -144,33 +202,37 @@ export const SimpleCarouselReviews = ({
   rightArrowComponent,
   letterSpacing,
   backgroundColor,
+  mobileVersionMaxWidth,
 }: ReviewsProps) => {
   console.log('reviews', reviews);
   return (
-    <Carousel
-      autoPlay={autoPlay}
-      interval={intervalTime}
-      renderArrowPrev={(increment) => (
-        <LeftArrowWrapper>
-          <LeftArrow onClick={() => increment()} />
-        </LeftArrowWrapper>
-      )}
-      renderArrowNext={(increment) => (
-        <RightArrowWrapper>
-          <RightArrow onClick={() => increment()} />
-        </RightArrowWrapper>
-      )}
-    >
-      {reviews.map((review) => (
-        <ReviewCard
-          reviewText={review.reviewText}
-          reviewerName={review.reviewerName}
-          photo={review.photo}
-          color={color}
-          backgroundColor={backgroundColor}
-          letterSpacing={letterSpacing}
-        />
-      ))}
-    </Carousel>
+    <CarouselWrapper>
+      <Carousel
+        autoPlay={autoPlay}
+        interval={intervalTime}
+        renderArrowPrev={(increment) => (
+          <LeftArrowWrapper mobileVersionMaxWidth={mobileVersionMaxWidth}>
+            <LeftArrow onClick={() => increment()} />
+          </LeftArrowWrapper>
+        )}
+        renderArrowNext={(increment) => (
+          <RightArrowWrapper mobileVersionMaxWidth={mobileVersionMaxWidth}>
+            <RightArrow onClick={() => increment()} />
+          </RightArrowWrapper>
+        )}
+      >
+        {reviews.map((review) => (
+          <ReviewCard
+            reviewText={review.reviewText}
+            reviewerName={review.reviewerName}
+            photo={review.photo}
+            color={color}
+            backgroundColor={backgroundColor}
+            letterSpacing={letterSpacing}
+            mobileVersionMaxWidth={mobileVersionMaxWidth}
+          />
+        ))}
+      </Carousel>
+    </CarouselWrapper>
   );
 };
