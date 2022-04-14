@@ -9,6 +9,7 @@ const Wrapper = styled.div<any>`
   padding-top: 40px;
   padding-bottom: 40px;
 
+  color: ${(props) => props.color};
   background: ${(props) => props.backgroundColor};
 `;
 const Photo = styled.div<any>`
@@ -40,7 +41,8 @@ const Line = styled.hr<any>`
   display: block;
   height: 1px;
   border: 0;
-  border-top: 1px solid #ccc;
+  border-top: ${(props) =>
+    props.color ? `1px solid ${props.color}` : `1px solid #ccc`};
   padding: 0;
 `;
 
@@ -60,11 +62,11 @@ export const Card = ({
   backgroundColor,
 }: CardProps) => {
   return (
-    <Wrapper backgroundColor={backgroundColor}>
+    <Wrapper color={color} backgroundColor={backgroundColor}>
       <Photo photoUrl={photo} />
       <TextWrapper>
         <Price>{price}</Price>
-        <Line />
+        <Line color={color} />
         <ServicesWrapper>
           {services.map((service) => (
             <Service>{service}</Service>
