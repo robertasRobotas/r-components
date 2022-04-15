@@ -64,6 +64,19 @@ export const ServiceCardsComponent: Story = (args) => {
       cardsArray={cardsArray}
       color="#3E3E3E"
       backgroundColor="#DFE4ED"
+      mobileVersionMaxWidth="767px"
+    />
+  );
+};
+
+export const ReverseServiceCardsComponent: Story = (args) => {
+  return (
+    <ServiceCards
+      type="reverse-simple-card"
+      cardsArray={cardsArray}
+      color="#3E3E3E"
+      backgroundColor="#DFE4ED"
+      mobileVersionMaxWidth="767px"
     />
   );
 };

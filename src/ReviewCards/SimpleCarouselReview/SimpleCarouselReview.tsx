@@ -208,6 +208,8 @@ export const SimpleCarouselReviews = ({
   return (
     <CarouselWrapper>
       <Carousel
+        preventMovementUntilSwipeScrollTolerance={true}
+        swipeScrollTolerance={50}
         autoPlay={autoPlay}
         interval={intervalTime}
         renderArrowPrev={(increment) => (

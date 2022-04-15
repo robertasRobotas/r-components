@@ -8,15 +8,18 @@ const Wrapper = styled.div<any>`
   width: 100%;
   padding-top: 40px;
   padding-bottom: 40px;
-  min-width: 375px;
+  min-width:375px;
   box-sizing: border-box;
   padding-left: 30px;
   padding-right: 30px;
+
   color: ${(props) => props.color};
   background: ${(props) => props.backgroundColor};
 
   @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
     display: grid;
+
+    b
   }
 `;
 const Photo = styled.div<any>`
@@ -26,19 +29,16 @@ const Photo = styled.div<any>`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  order: 1;
+  order: 2;
+
   @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
-    order: 2;
     height: 200px;
     width: 100%;
   }
 `;
 
 const TextWrapper = styled.div<any>`
-  order: 2;
-  @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
-    order: 1;
-  }
+  order: 1;
 `;
 
 const Price = styled.div<any>`

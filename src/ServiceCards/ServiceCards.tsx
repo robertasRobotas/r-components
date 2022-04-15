@@ -1,5 +1,6 @@
 import React from 'react';
 import { SimpleCards } from './SimpleCards/SimpleCards';
+import { ReverseSimpleCards } from './ReverseSimpleCards/ReverseSimpleCards';
 
 type Card = {
   photo: any;
@@ -8,10 +9,11 @@ type Card = {
 };
 
 type ServiceCardsProps = {
-  type: 'simple-card';
+  type: 'simple-card' | 'reverse-simple-card';
   cardsArray: Array<Card>;
   color?: string;
   backgroundColor?: string;
+  mobileVersionMaxWidth: string;
 };
 
 export const ServiceCards = ({
@@ -19,6 +21,7 @@ export const ServiceCards = ({
   cardsArray,
   color,
   backgroundColor,
+  mobileVersionMaxWidth,
 }: ServiceCardsProps) => {
   if (type === 'simple-card') {
     return (
@@ -26,6 +29,18 @@ export const ServiceCards = ({
         cardsArray={cardsArray}
         color={color}
         backgroundColor={backgroundColor}
+        mobileVersionMaxWidth={mobileVersionMaxWidth}
+      />
+    );
+  }
+
+  if (type === 'reverse-simple-card') {
+    return (
+      <ReverseSimpleCards
+        cardsArray={cardsArray}
+        color={color}
+        backgroundColor={backgroundColor}
+        mobileVersionMaxWidth={mobileVersionMaxWidth}
       />
     );
   }

@@ -20,7 +20,7 @@ type SimpleCardsProps = {
   mobileVersionMaxWidth: string;
 };
 
-export const SimpleCards = ({
+export const ReverseSimpleCards = ({
   cardsArray,
   color,
   backgroundColor,
