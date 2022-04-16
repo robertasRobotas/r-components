@@ -6,9 +6,14 @@ const Wrapper = styled.div<any>`
   display: grid;
 `;
 
+const LinkWrapper = styled.a<any>`
+  text-decoration: none;
+`;
+
 type Item = {
   photo: any;
   title: string;
+  onClickLink: string;
 };
 
 type SimpleCardsProps = {
@@ -29,14 +34,16 @@ export const SimpleItems = ({
   return (
     <Wrapper>
       {itemsArray.map((card) => (
-        <Item
-          photo={card.photo}
-          title={card.title}
-          buttonContent={buttonContent}
-          buttonColor={buttonColor}
-          backgroundHoverColor={backgroundHoverColor}
-          mobileVersionMaxWidth={mobileVersionMaxWidth}
-        />
+        <LinkWrapper href={card.onClickLink}>
+          <Item
+            photo={card.photo}
+            title={card.title}
+            buttonContent={buttonContent}
+            buttonColor={buttonColor}
+            backgroundHoverColor={backgroundHoverColor}
+            mobileVersionMaxWidth={mobileVersionMaxWidth}
+          />
+        </LinkWrapper>
       ))}
     </Wrapper>
   );

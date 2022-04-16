@@ -22,6 +22,7 @@ export const GalleryItems = ({
   buttonContent,
   backgroundHoverColor,
   buttonColor,
+  mobileVersionMaxWidth,
 }: GalleryCardsProps) => {
   if (type === 'simple-items') {
     return (
@@ -30,6 +31,7 @@ export const GalleryItems = ({
         buttonContent={buttonContent}
         backgroundHoverColor={backgroundHoverColor}
         buttonColor={buttonColor}
+        mobileVersionMaxWidth={mobileVersionMaxWidth}
       />
     );
   }
