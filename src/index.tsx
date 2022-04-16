@@ -10,3 +10,4 @@ export { ReviewCards } from './ReviewCards/ReviewCards';
 export { PhotoLine } from './PhotoLine/PhotoLine';
 export { ServiceCards } from './ServiceCards/ServiceCards';
 export { AboutUsSection } from './AboutUs/AboutUsSection';
+export { GalleryItems } from './GalleryItems/GalleryItems';
