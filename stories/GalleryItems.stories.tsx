@@ -49,3 +49,31 @@ export const GalleryItemsComponent: Story = (args) => {
     />
   );
 };
+
+export const GalleryItemsComponentReverse: Story = (args) => {
+  return (
+    <GalleryItems
+      type="simple-items-reverse"
+      itemsArray={itemsArray}
+      buttonContent="Žiūreti"
+      backgroundHoverColor="#DFE4ED"
+      buttonColor="#BCA183"
+      mobileVersionMaxWidth="767px"
+      color="#707070"
+    />
+  );
+};
+
+export const GalleryItemsComponentChanging: Story = (args) => {
+  return (
+    <GalleryItems
+      type="simple-items-changing-sides"
+      itemsArray={itemsArray}
+      buttonContent="Žiūreti"
+      backgroundHoverColor="#DFE4ED"
+      buttonColor="#BCA183"
+      mobileVersionMaxWidth="767px"
+      color="#707070"
+    />
+  );
+};

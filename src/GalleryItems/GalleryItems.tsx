@@ -8,7 +8,7 @@ type Item = {
 };
 
 type GalleryCardsProps = {
-  type: 'simple-items';
+  type: 'simple-items' | 'simple-items-reverse' | 'simple-items-changing-sides';
   itemsArray: Array<Item>;
   buttonContent?: string;
   backgroundHoverColor?: string;
@@ -26,9 +26,14 @@ export const GalleryItems = ({
   mobileVersionMaxWidth,
   color,
 }: GalleryCardsProps) => {
-  if (type === 'simple-items') {
+  if (
+    type === 'simple-items' ||
+    type === 'simple-items-reverse' ||
+    type === 'simple-items-changing-sides'
+  ) {
     return (
       <SimpleItems
+        type={type}
         itemsArray={itemsArray}
         buttonContent={buttonContent}
         backgroundHoverColor={backgroundHoverColor}

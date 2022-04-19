@@ -39,14 +39,20 @@ const ContentWrapper = styled.div<any>`
 
 const PhotoWrapper = styled.div<any>`
   order: 1;
+
+  ${(props) =>
+    props.isReverseCard &&
+    css<any>`
+      order: 2;
+    `}
   @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
     order: 2;
   }
 `;
 
 const Photo = styled.div<any>`
-  width: 600px;
-  height: 350px;
+  width: 450px;
+  height: 300px;
 
   background-image: ${(props: any) => `url(${props.photoUrl})`};
   background-repeat: no-repeat;
@@ -71,6 +77,13 @@ const TextWrapper = styled.div<any>`
   width: 500px;
   text-align: center;
   gap: 60px;
+  order: 2;
+
+  ${(props) =>
+    props.isReverseCard &&
+    css<any>`
+      order: 1;
+    `}
 
   @media (max-width: 1200px) {
     width: 400px;
@@ -80,7 +93,6 @@ const TextWrapper = styled.div<any>`
     width: 300px;
   }
 
-  order: 2;
   @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
     order: 1;
     gap: 30px;
@@ -104,6 +116,7 @@ type ItemProps = {
   buttonColor: string;
   mobileVersionMaxWidth: string;
   color: string;
+  isReverseCard: boolean;
 };
 
 export const Item = ({
@@ -114,6 +127,7 @@ export const Item = ({
   mobileVersionMaxWidth,
   buttonColor,
   color,
+  isReverseCard,
 }: ItemProps) => {
   const [isHover, setIsHover] = useState(false);
   return (
@@ -125,13 +139,19 @@ export const Item = ({
       isHover={isHover}
     >
       <ContentWrapper mobileVersionMaxWidth={mobileVersionMaxWidth}>
-        <PhotoWrapper mobileVersionMaxWidth={mobileVersionMaxWidth}>
+        <PhotoWrapper
+          mobileVersionMaxWidth={mobileVersionMaxWidth}
+          isReverseCard={isReverseCard}
+        >
           <Photo
             photoUrl={photo}
             mobileVersionMaxWidth={mobileVersionMaxWidth}
           />
         </PhotoWrapper>
-        <TextWrapper mobileVersionMaxWidth={mobileVersionMaxWidth}>
+        <TextWrapper
+          mobileVersionMaxWidth={mobileVersionMaxWidth}
+          isReverseCard={isReverseCard}
+        >
           <Title color={color}>{title}</Title>
           <ButtonWrapper>
             <Button

@@ -17,6 +17,7 @@ type Item = {
 };
 
 type SimpleCardsProps = {
+  type: 'simple-items' | 'simple-items-reverse' | 'simple-items-changing-sides';
   itemsArray: Array<Item>;
   buttonContent?: string;
   backgroundHoverColor?: string;
@@ -32,12 +33,29 @@ export const SimpleItems = ({
   buttonColor,
   mobileVersionMaxWidth,
   color,
+  type,
 }: SimpleCardsProps) => {
+  const isReverseCard = (type: string, index: number): boolean => {
+    if (type === 'simple-items') {
+      return false;
+    }
+
+    if (type === 'simple-items-reverse') {
+      return true;
+    }
+
+    if (type === 'simple-items-changing-sides') {
+      return index % 2 === 1;
+    }
+    return false;
+  };
+
   return (
     <Wrapper>
-      {itemsArray.map((card) => (
+      {itemsArray.map((card, index) => (
         <LinkWrapper href={card.onClickLink}>
           <Item
+            isReverseCard={isReverseCard(type, index)}
             photo={card.photo}
             title={card.title}
             buttonContent={buttonContent}
