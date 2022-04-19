@@ -11,3 +11,4 @@ export { PhotoLine } from './PhotoLine/PhotoLine';
 export { ServiceCards } from './ServiceCards/ServiceCards';
 export { AboutUsSection } from './AboutUs/AboutUsSection';
 export { GalleryItems } from './GalleryItems/GalleryItems';
+export { Button } from './Button/Button';

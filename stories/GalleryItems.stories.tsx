@@ -41,10 +41,11 @@ export const GalleryItemsComponent: Story = (args) => {
     <GalleryItems
       type="simple-items"
       itemsArray={itemsArray}
-      buttonContent="Ziureti"
+      buttonContent="Žiūreti"
       backgroundHoverColor="#DFE4ED"
-      buttonColor="#968068"
+      buttonColor="#BCA183"
       mobileVersionMaxWidth="767px"
+      color="#707070"
     />
   );
 };

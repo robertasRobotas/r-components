@@ -14,6 +14,7 @@ type GalleryCardsProps = {
   backgroundHoverColor?: string;
   buttonColor: string;
   mobileVersionMaxWidth: string;
+  color: string;
 };
 
 export const GalleryItems = ({
@@ -23,6 +24,7 @@ export const GalleryItems = ({
   backgroundHoverColor,
   buttonColor,
   mobileVersionMaxWidth,
+  color,
 }: GalleryCardsProps) => {
   if (type === 'simple-items') {
     return (
@@ -32,6 +34,7 @@ export const GalleryItems = ({
         backgroundHoverColor={backgroundHoverColor}
         buttonColor={buttonColor}
         mobileVersionMaxWidth={mobileVersionMaxWidth}
+        color={color}
       />
     );
   }

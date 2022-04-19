@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+import { Button } from '../../Button/Button';
 
 const Wrapper = styled.div<any>`
   display: flex;
@@ -16,10 +17,9 @@ const Wrapper = styled.div<any>`
     css<any>`
       background: ${(props) => props.backgroundHoverColor};
     `}
-
   @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
     height: auto;
-    padding-top: 30px;
+    padding-top: 60px;
     padding-bottom: 30px;
   }
 `;
@@ -88,8 +88,13 @@ const TextWrapper = styled.div<any>`
 `;
 const Title = styled.div<any>`
   letter-spacing: 1px;
+  color: ${(props) => props.color};
 `;
-const Button = styled.div<any>``;
+
+const ButtonWrapper = styled.div<any>`
+  display: flex;
+  justify-content: center;
+`;
 
 type ItemProps = {
   photo: any;
@@ -98,6 +103,7 @@ type ItemProps = {
   backgroundHoverColor?: string;
   buttonColor: string;
   mobileVersionMaxWidth: string;
+  color: string;
 };
 
 export const Item = ({
@@ -107,6 +113,7 @@ export const Item = ({
   backgroundHoverColor,
   mobileVersionMaxWidth,
   buttonColor,
+  color,
 }: ItemProps) => {
   const [isHover, setIsHover] = useState(false);
   return (
@@ -125,8 +132,19 @@ export const Item = ({
           />
         </PhotoWrapper>
         <TextWrapper mobileVersionMaxWidth={mobileVersionMaxWidth}>
-          <Title>{title}</Title>
-          <Button buttonColor={buttonColor}>{buttonContent}</Button>
+          <Title color={color}>{title}</Title>
+          <ButtonWrapper>
+            <Button
+              type="enter-button"
+              mainColor={buttonColor}
+              invertedColor="white"
+              fontSize="16px"
+              content={buttonContent}
+              width="160px"
+              height="45px"
+              isHover={isHover}
+            />
+          </ButtonWrapper>
         </TextWrapper>
       </ContentWrapper>
     </Wrapper>

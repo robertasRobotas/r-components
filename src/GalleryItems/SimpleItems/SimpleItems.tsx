@@ -22,6 +22,7 @@ type SimpleCardsProps = {
   backgroundHoverColor?: string;
   buttonColor: string;
   mobileVersionMaxWidth: string;
+  color: string;
 };
 
 export const SimpleItems = ({
@@ -30,6 +31,7 @@ export const SimpleItems = ({
   backgroundHoverColor,
   buttonColor,
   mobileVersionMaxWidth,
+  color,
 }: SimpleCardsProps) => {
   return (
     <Wrapper>
@@ -42,6 +44,7 @@ export const SimpleItems = ({
             buttonColor={buttonColor}
             backgroundHoverColor={backgroundHoverColor}
             mobileVersionMaxWidth={mobileVersionMaxWidth}
+            color={color}
           />
         </LinkWrapper>
       ))}
