@@ -1,5 +1,13 @@
 import { useState } from 'react';
 
+type Props = {
+  displayYearMonth?: string;
+  daysShort?: Array<string>;
+  monthNames?: Array<string>;
+  monthLinesNumber?: number;
+  monthDayNames?: Array<string>;
+};
+
 const daysShortArr = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 const monthNamesArr = [
@@ -17,13 +25,24 @@ const monthNamesArr = [
   'December',
 ];
 
-const useCalendar = (daysShort = daysShortArr, monthNames = monthNamesArr) => {
-  const today = new Date();
-  console.log('today', today);
+const useCalendar = ({
+  daysShort = daysShortArr,
+  monthNames = monthNamesArr,
+  displayYearMonth,
+  monthLinesNumber,
+}: Props) => {
+  const addZeroToSingleNumber = (number: number): string => {
+    if (number.toString().length === 1) {
+      return `0${number}`;
+    }
+
+    return `${number}`;
+  };
+
+  const today = (displayYearMonth && new Date(displayYearMonth)) || new Date();
   const todayFormatted = `${today.getDate()}-${
     today.getMonth() + 1
   }-${today.getFullYear()}`;
-  console.log('todayFormatted', todayFormatted);
 
   const daysInWeek = [1, 2, 3, 4, 5, 6, 0];
   const [selectedDate, setSelectedDate] = useState(today);
@@ -48,7 +67,7 @@ const useCalendar = (daysShort = daysShortArr, monthNames = monthNamesArr) => {
     prevMonthLastDate.getDate() - daysInWeek.indexOf(firstDayInMonth) + 1;
   let currentMonthCounter = 1;
   let nextMonthCounter = 1;
-  const rows = 6;
+  const rows = monthLinesNumber || 6;
   const cols = 7;
   const calendarRows: any = {};
 
@@ -64,13 +83,13 @@ const useCalendar = (daysShort = daysShortArr, monthNames = monthNamesArr) => {
             ...calendarRows[i],
             {
               classes: 'in-prev-month',
-              date: `${prevMonthStartingPoint}-${
-                selectedDate.getMonth() === 0 ? 12 : selectedDate.getMonth()
-              }-${
+              date: `${
                 selectedDate.getMonth() === 0
                   ? selectedDate.getFullYear() - 1
                   : selectedDate.getFullYear()
-              }`,
+              }-${addZeroToSingleNumber(
+                selectedDate.getMonth() === 0 ? 12 : selectedDate.getMonth()
+              )}-${addZeroToSingleNumber(prevMonthStartingPoint)}`,
               value: prevMonthStartingPoint,
             },
           ];
@@ -80,9 +99,9 @@ const useCalendar = (daysShort = daysShortArr, monthNames = monthNamesArr) => {
             ...calendarRows[i],
             {
               classes: '',
-              date: `${currentMonthCounter}-${
+              date: `${selectedDate.getFullYear()}-${addZeroToSingleNumber(
                 selectedDate.getMonth() + 1
-              }-${selectedDate.getFullYear()}`,
+              )}-${addZeroToSingleNumber(currentMonthCounter)}`,
               value: currentMonthCounter,
             },
           ];
@@ -93,9 +112,9 @@ const useCalendar = (daysShort = daysShortArr, monthNames = monthNamesArr) => {
           ...calendarRows[i],
           {
             classes: '',
-            date: `${currentMonthCounter}-${
+            date: `${selectedDate.getFullYear()}-${addZeroToSingleNumber(
               selectedDate.getMonth() + 1
-            }-${selectedDate.getFullYear()}`,
+            )}-${addZeroToSingleNumber(currentMonthCounter)}`,
             value: currentMonthCounter,
           },
         ];
@@ -105,15 +124,15 @@ const useCalendar = (daysShort = daysShortArr, monthNames = monthNamesArr) => {
           ...calendarRows[i],
           {
             classes: 'in-next-month',
-            date: `${nextMonthCounter}-${
-              selectedDate.getMonth() + 2 === 13
-                ? 1
-                : selectedDate.getMonth() + 2
-            }-${
+            date: `${
               selectedDate.getMonth() + 2 === 13
                 ? selectedDate.getFullYear() + 1
                 : selectedDate.getFullYear()
-            }`,
+            }-${addZeroToSingleNumber(
+              selectedDate.getMonth() + 2 === 13
+                ? 1
+                : selectedDate.getMonth() + 2
+            )}-${addZeroToSingleNumber(nextMonthCounter)}`,
             value: nextMonthCounter,
           },
         ];

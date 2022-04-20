@@ -3,12 +3,34 @@ import { MonthAvailabilityCalendar } from './MonthAvailabilityCalendar/MonthAvai
 
 type CalendarProps = {
   type: 'availability-of-specific-month';
-  busyDays: Array<any>;
+  displayYearMonth?: string;
+  bookedDays: Array<string>;
+  isDisplaymonth: boolean;
+  isDisplayYear?: boolean;
+  monthLinesNumber?: number;
+  monthDayNames?: Array<string>;
 };
 
-export const Calendar = ({ type, busyDays }: CalendarProps) => {
+export const Calendar = ({
+  type,
+  displayYearMonth,
+  bookedDays,
+  isDisplaymonth = true,
+  isDisplayYear = true,
+  monthLinesNumber,
+  monthDayNames,
+}: CalendarProps) => {
   if (type === 'availability-of-specific-month') {
-    return <MonthAvailabilityCalendar busyDays={busyDays} />;
+    return (
+      <MonthAvailabilityCalendar
+        displayYearMonth={displayYearMonth}
+        bookedDays={bookedDays}
+        isDisplaymonth={isDisplaymonth}
+        isDisplayYear={isDisplayYear}
+        monthLinesNumber={monthLinesNumber}
+        monthDayNames={monthDayNames}
+      />
+    );
   }
   return null;
 };
