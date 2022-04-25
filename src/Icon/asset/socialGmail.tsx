@@ -9,8 +9,8 @@ type SocialSVGType = {
 export const SocialGmail = ({ color, width, height }: SocialSVGType) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="23.14"
-    height="17.355"
+    width={width || '23.14'}
+    height={height || '17.355'}
     viewBox="0 0 23.14 17.355"
   >
     <path

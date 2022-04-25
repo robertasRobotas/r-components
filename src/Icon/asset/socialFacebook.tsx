@@ -9,8 +9,8 @@ type SocialSVGType = {
 export const SocialFacebook = ({ color, width, height }: SocialSVGType) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="17.266"
-    height="17.266"
+    width={width || '17.266'}
+    height={height || '17.266'}
     viewBox="0 0 17.266 17.266"
   >
     <path

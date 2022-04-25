@@ -39,8 +39,8 @@ const selectIcon = (type: string, color: string) => {
 const SocialIcon = ({
   link,
   type,
-  width = '20px',
-  height = '20px',
+  // width = '20px',
+  // height = '20px',
   color = 'black',
   hoverColor = 'black',
 }: SocialIconProps) => {
@@ -67,11 +67,12 @@ export const SocialIcons = ({
   color = 'black',
   hoverColor = 'black',
 }: SocialIconsProps) => {
-  const [currentColor, setCurrentColor] = useState(color);
   return (
     <>
       {socialMedia.map((socMediaItem) => (
         <SocialIcon
+          width={width}
+          height={height}
           link={socMediaItem.link}
           type={socMediaItem.type}
           color={color}

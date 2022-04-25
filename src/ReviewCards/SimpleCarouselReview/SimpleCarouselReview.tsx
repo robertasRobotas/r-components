@@ -199,7 +199,7 @@ export const SimpleCarouselReviews = ({
   reviews,
   color,
   intervalTime,
-  rightArrowComponent,
+  // rightArrowComponent,
   letterSpacing,
   backgroundColor,
   mobileVersionMaxWidth,

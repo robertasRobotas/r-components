@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import leftArrow from './assets/leftArrow.svg';
-import rightArrow from './assets/rightArrow.svg';
+import { leftArrow } from './assets/leftArrow';
+import { rightArrow } from './assets/rightArrow';
 
 export const Wrapper = styled.div<any>`
   width: 100%;
@@ -43,7 +43,7 @@ export const Switcher = ({
   size,
   openNextPhotoClick,
   openPreviousPhotoClick,
-  onSpecificPhotoClick,
+  // onSpecificPhotoClick,
   resetInterval,
 }: SwitcherProps) => {
   if (switcherType === 'pagination') {

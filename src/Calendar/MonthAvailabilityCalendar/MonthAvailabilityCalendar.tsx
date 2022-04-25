@@ -27,7 +27,7 @@ const CalendarDay = styled.div<any>`
   align-items: center;
 
   border-radius: 50%;
-  width: 47px;
+  width: 35px;
   height: 48px;
 
   ${(props) =>
