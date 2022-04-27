@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -35,7 +35,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "r-components",
+  "name": "r-componentsxxxxxxxxxxx",
   "author": "Robertas",
   "module": "dist/r-components.esm.js",
   "size-limit": [
@@ -63,6 +63,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
+    "rollup-plugin-postcss": "^4.0.2",
     "size-limit": "^7.0.8",
     "tsdx": "^0.14.1",
     "tslib": "^2.3.1",
@@ -73,6 +74,7 @@
     "@types/styled-components": "^5.1.24",
     "react-indiana-drag-scroll": "^2.1.0",
     "react-responsive-carousel": "^3.2.23",
+    "rollup-plugin-scss": "^3.0.0",
     "rollup-plugin-typescript2": "^0.31.2",
     "styled-components": "^5.3.3"
   }

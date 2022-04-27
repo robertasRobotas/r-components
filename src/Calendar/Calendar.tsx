@@ -1,5 +1,6 @@
 import React from 'react';
 import { MonthAvailabilityCalendar } from './MonthAvailabilityCalendar/MonthAvailabilityCalendar';
+import { Test } from '../Test/Test';
 
 type CalendarProps = {
   type: 'availability-of-specific-month';

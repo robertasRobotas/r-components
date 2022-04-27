@@ -13,3 +13,4 @@ export { AboutUsSection } from './AboutUs/AboutUsSection';
 export { GalleryItems } from './GalleryItems/GalleryItems';
 export { Button } from './Button/Button';
 export { Calendar } from './Calendar/Calendar';
+export { Test } from './Test/Test';
