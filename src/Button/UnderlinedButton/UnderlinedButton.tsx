@@ -4,21 +4,17 @@ import { Arrow } from '../assets/arrow';
 
 export const Wrapper = styled.div<any>`
   display: flex;
-  justify-content: center;
   align-items: center;
+  padding-left: 5px;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  border: 1px solid ${(props) => props.mainColor};
+  border-bottom: 1px solid ${(props) => props.mainColor};
   color: ${(props) => props.mainColor};
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : 'white'};
+  letter-spacing: 2px;
   cursor: pointer;
-  ${(props) =>
-    props.isHover &&
-    css<any>`
-      background-color: ${(props) => props.mainColor};
-      color: white;
-    `}
+  ${(props) => props.isHover && css<any>``}
 `;
 
 export const IconWrapper = styled.div<any>`
@@ -33,7 +29,7 @@ export const IconWrapper = styled.div<any>`
     `}
 `;
 
-type ReviewCardsProps = {
+type UnderlinedButtonProps = {
   onClick: () => void;
   mainColor: string;
   invertedColor: string;
@@ -44,7 +40,7 @@ type ReviewCardsProps = {
   isHover?: boolean;
 };
 
-export const EnterButton = ({
+export const UnderlinedButton = ({
   mainColor,
   invertedColor,
   fontSize,
@@ -52,7 +48,7 @@ export const EnterButton = ({
   width,
   height,
   isHover,
-}: ReviewCardsProps) => {
+}: UnderlinedButtonProps) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <Wrapper
@@ -68,7 +64,7 @@ export const EnterButton = ({
     >
       {content}
       <IconWrapper isHover={isHover || isHovered}>
-        <Arrow color={isHovered || isHover ? 'white' : mainColor} />
+        <Arrow color={mainColor} />
       </IconWrapper>
     </Wrapper>
   );

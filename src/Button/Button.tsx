@@ -1,8 +1,10 @@
 import React from 'react';
 import { EnterButton } from './EnterButton/EnterButton';
+import { UnderlinedButton } from './UnderlinedButton/UnderlinedButton';
 
 type ReviewCardsProps = {
-  type: 'enter-button';
+  type: 'enter-button' | 'underlined-botton';
+  onClick: () => void;
   mainColor: string;
   invertedColor: string;
   fontSize: string;
@@ -13,6 +15,7 @@ type ReviewCardsProps = {
 };
 
 export const Button = ({
+  onClick,
   width,
   height,
   type,
@@ -32,6 +35,22 @@ export const Button = ({
         invertedColor={invertedColor}
         content={content}
         isHover={isHover}
+        onClick={onClick}
+      />
+    );
+  }
+
+  if (type === 'underlined-botton') {
+    return (
+      <UnderlinedButton
+        width={width}
+        height={height}
+        mainColor={mainColor}
+        fontSize={fontSize}
+        invertedColor={invertedColor}
+        content={content}
+        isHover={isHover}
+        onClick={onClick}
       />
     );
   }

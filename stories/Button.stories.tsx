@@ -25,6 +25,22 @@ export const EnterButtonComponent: Story = (args) => {
       content="Žiūrėti"
       width="160px"
       height="45px"
+      onClick={() => console.log('c')}
+    />
+  );
+};
+
+export const UnderlinedButtonComponent: Story = (args) => {
+  return (
+    <Button
+      type="underlined-botton"
+      mainColor="#707070"
+      invertedColor="white"
+      fontSize="16px"
+      content="GALERIJA"
+      width="125px"
+      height="45px"
+      onClick={() => console.log('c')}
     />
   );
 };
