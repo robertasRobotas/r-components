@@ -110,6 +110,7 @@ const ButtonWrapper = styled.div<any>`
 
 type ItemProps = {
   photo: any;
+  onClick: () => void;
   title: string;
   buttonContent: any;
   backgroundHoverColor?: string;
@@ -121,6 +122,7 @@ type ItemProps = {
 
 export const Item = ({
   photo,
+  onClick,
   title,
   buttonContent,
   backgroundHoverColor,
@@ -163,6 +165,7 @@ export const Item = ({
               width="160px"
               height="45px"
               isHover={isHover}
+              onClick={onClick}
             />
           </ButtonWrapper>
         </TextWrapper>

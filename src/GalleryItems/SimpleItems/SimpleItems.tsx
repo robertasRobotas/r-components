@@ -19,6 +19,7 @@ type Item = {
 type SimpleCardsProps = {
   type: 'simple-items' | 'simple-items-reverse' | 'simple-items-changing-sides';
   itemsArray: Array<Item>;
+  onClick: () => void;
   buttonContent?: string;
   backgroundHoverColor?: string;
   buttonColor: string;
@@ -29,6 +30,7 @@ type SimpleCardsProps = {
 export const SimpleItems = ({
   itemsArray,
   buttonContent,
+  onClick,
   backgroundHoverColor,
   buttonColor,
   mobileVersionMaxWidth,
@@ -63,6 +65,7 @@ export const SimpleItems = ({
             backgroundHoverColor={backgroundHoverColor}
             mobileVersionMaxWidth={mobileVersionMaxWidth}
             color={color}
+            onClick={onClick}
           />
         </LinkWrapper>
       ))}

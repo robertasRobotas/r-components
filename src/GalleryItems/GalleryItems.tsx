@@ -9,6 +9,7 @@ type Item = {
 
 type GalleryCardsProps = {
   type: 'simple-items' | 'simple-items-reverse' | 'simple-items-changing-sides';
+  onClick: () => void;
   itemsArray: Array<Item>;
   buttonContent?: string;
   backgroundHoverColor?: string;
@@ -19,6 +20,7 @@ type GalleryCardsProps = {
 
 export const GalleryItems = ({
   type,
+  onClick,
   itemsArray,
   buttonContent,
   backgroundHoverColor,
@@ -40,6 +42,7 @@ export const GalleryItems = ({
         buttonColor={buttonColor}
         mobileVersionMaxWidth={mobileVersionMaxWidth}
         color={color}
+        onClick={onClick}
       />
     );
   }
