@@ -48,10 +48,12 @@ export const UnderlinedButton = ({
   width,
   height,
   isHover,
+  onClick,
 }: UnderlinedButtonProps) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <Wrapper
+      onClick={onClick}
       onMouseEnter={() => !isHover && setIsHovered(true)}
       onMouseLeave={() => !isHover && setIsHovered(false)}
       height={height}

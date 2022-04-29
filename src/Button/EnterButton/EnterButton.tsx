@@ -52,10 +52,12 @@ export const EnterButton = ({
   width,
   height,
   isHover,
+  onClick,
 }: ReviewCardsProps) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <Wrapper
+      onClick={onClick}
       onMouseEnter={() => !isHover && setIsHovered(true)}
       onMouseLeave={() => !isHover && setIsHovered(false)}
       height={height}
