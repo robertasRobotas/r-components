@@ -115,7 +115,6 @@ export const MonthAvailabilityCalendar = ({
           </thead>
           <tbody>
             {Object.values(calendarRows).map((cols: any, index) => {
-              console.log('index', index);
               return (
                 <DaysRow isPaintRow={index % 2 === 0} key={cols[0].date}>
                   {cols.map((col: any) => (

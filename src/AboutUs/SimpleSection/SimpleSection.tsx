@@ -91,7 +91,6 @@ export const SimpleSection = ({
   photoWidth,
   photoHeight,
 }: AboutUsProps) => {
-  console.log(text);
   return (
     <ComponentWrapper>
       <Wrapper backgroundColor={backgroundColor}>
