@@ -80,20 +80,15 @@ export const MonthAvailabilityCalendar = ({
   const {
     calendarRows,
     selectedDate,
-    todayFormatted,
     daysShort,
     monthNames,
-    getNextMonth,
-    getPrevMonth,
+    // getNextMonth,
+    // getPrevMonth,
   } = useCalendar({
     displayYearMonth,
     monthLinesNumber,
     daysShort: monthDayNames,
   });
-
-  const dateClickHandler = (date: any) => {
-    console.log(date);
-  };
 
   return (
     <Wrapper className="wrapper">
@@ -127,7 +122,6 @@ export const MonthAvailabilityCalendar = ({
                           }
                           booked={bookedDays.includes(col.date)}
                           key={col.date}
-                          onClick={() => dateClickHandler(col.date)}
                         >
                           <BookedWrapper> {col.value}</BookedWrapper>
                         </CalendarDay>
@@ -139,7 +133,6 @@ export const MonthAvailabilityCalendar = ({
                           }
                           booked={bookedDays.includes(col.date)}
                           key={col.date}
-                          onClick={() => dateClickHandler(col.date)}
                         >
                           {col.value}
                         </CalendarDay>
