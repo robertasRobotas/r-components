@@ -39,7 +39,9 @@ const useCalendar = ({
     return `${number}`;
   };
 
-  const today = (displayYearMonth && new Date(displayYearMonth)) || new Date();
+  const today =
+    (displayYearMonth && new Date(new Date(displayYearMonth).toISOString())) ||
+    new Date(new Date().toISOString());
   const todayFormatted = `${today.getDate()}-${
     today.getMonth() + 1
   }-${today.getFullYear()}`;
@@ -47,14 +49,18 @@ const useCalendar = ({
   const daysInWeek = [1, 2, 3, 4, 5, 6, 0];
   const [selectedDate, setSelectedDate] = useState(today);
   const selectedMonthLastDate = new Date(
-    selectedDate.getFullYear(),
-    selectedDate.getMonth() + 1,
-    0
+    new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth() + 1,
+      0
+    ).toISOString()
   );
   const prevMonthLastDate = new Date(
-    selectedDate.getFullYear(),
-    selectedDate.getMonth(),
-    0
+    new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+      0
+    ).toISOString()
   );
   const daysInMonth = selectedMonthLastDate.getDate();
   const firstDayInMonth = new Date(
@@ -144,14 +150,26 @@ const useCalendar = ({
   const getPrevMonth = () => {
     setSelectedDate(
       (prevValue) =>
-        new Date(prevValue.getFullYear(), prevValue.getMonth() - 1, 1)
+        new Date(
+          new Date(
+            prevValue.getFullYear(),
+            prevValue.getMonth() - 1,
+            1
+          ).toISOString()
+        )
     );
   };
 
   const getNextMonth = () => {
     setSelectedDate(
       (prevValue) =>
-        new Date(prevValue.getFullYear(), prevValue.getMonth() + 1, 1)
+        new Date(
+          new Date(
+            prevValue.getFullYear(),
+            prevValue.getMonth() + 1,
+            1
+          ).toISOString()
+        )
     );
   };
 

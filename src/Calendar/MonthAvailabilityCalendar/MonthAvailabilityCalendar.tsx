@@ -54,7 +54,7 @@ const Title = styled.p<any>`
   padding-left: 12px;
 `;
 
-const Table = styled.table<any>`
+const Table = styled.div<any>`
   margin: auto;
   width: 100%;
   border-spacing: 0 !important;
@@ -90,6 +90,10 @@ export const MonthAvailabilityCalendar = ({
     daysShort: monthDayNames,
   });
 
+  const dateClickHandler = (date: any) => {
+    console.log(date);
+  };
+
   return (
     <Wrapper className="wrapper">
       <ContentWrapper>
@@ -101,14 +105,14 @@ export const MonthAvailabilityCalendar = ({
           </Title>
         )}
         <Table className="table">
-          <thead>
+          <div>
             <DaysRow>
               {daysShort.map((day) => (
                 <CalendarDay key={day}>{day}</CalendarDay>
               ))}
             </DaysRow>
-          </thead>
-          <tbody>
+          </div>
+          <div>
             {Object.values(calendarRows).map((cols: any, index) => {
               return (
                 <DaysRow isPaintRow={index % 2 === 0} key={cols[0].date}>
@@ -122,6 +126,7 @@ export const MonthAvailabilityCalendar = ({
                           }
                           booked={bookedDays.includes(col.date)}
                           key={col.date}
+                          onClick={() => dateClickHandler(col.date)}
                         >
                           <BookedWrapper> {col.value}</BookedWrapper>
                         </CalendarDay>
@@ -133,6 +138,7 @@ export const MonthAvailabilityCalendar = ({
                           }
                           booked={bookedDays.includes(col.date)}
                           key={col.date}
+                          onClick={() => dateClickHandler(col.date)}
                         >
                           {col.value}
                         </CalendarDay>
@@ -142,7 +148,7 @@ export const MonthAvailabilityCalendar = ({
                 </DaysRow>
               );
             })}
-          </tbody>
+          </div>
         </Table>
 
         {/* <button className="button" onClick={getPrevMonth}>
