@@ -1,9 +1,8 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div<any>`
+  height: 100px;
   width: 100%;
-  background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor : 'white'};
 `;
 
 export const ContentWrapper = styled.div<any>`
@@ -33,6 +32,7 @@ export const ContentWrapper = styled.div<any>`
       props.isMobileNavbarOpen &&
       css`
         height: 100vh;
+        position: fixed;
       `}
   }
 `;

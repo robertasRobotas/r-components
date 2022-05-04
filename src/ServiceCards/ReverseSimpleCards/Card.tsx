@@ -39,6 +39,7 @@ const Photo = styled.div<any>`
 
 const TextWrapper = styled.div<any>`
   order: 1;
+  text-align: right;
 `;
 
 const Price = styled.div<any>`
@@ -55,7 +56,7 @@ const Service = styled.div<any>``;
 const Line = styled.hr<any>`
   width: 100px;
   margin-bottom: 50px;
-  margin-left: 0;
+  margin-right: 0;
   display: block;
   height: 1px;
   border: 0;

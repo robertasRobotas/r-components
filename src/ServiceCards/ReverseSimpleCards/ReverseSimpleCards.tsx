@@ -4,7 +4,7 @@ import { Card } from './Card';
 
 const Wrapper = styled.div<any>`
   display: grid;
-  gap: 30px;
+  gap: 90px;
 `;
 
 type Card = {

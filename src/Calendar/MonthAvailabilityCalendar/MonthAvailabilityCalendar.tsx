@@ -14,6 +14,8 @@ const ContentWrapper = styled.div<any>`
 const DaysRow = styled.div<any>`
   display: flex;
   justify-content: space-around;
+  background: #ffffff;
+
   ${(props) =>
     props.isPaintRow &&
     css`
