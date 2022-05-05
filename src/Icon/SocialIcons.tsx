@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import { SocialFacebook, SocialGmail, SocialInstagram } from './asset';
+import styled from 'styled-components';
+
+const ImgWrapper = styled.div<any>`
+  display: flex;
+  gap: ${(props: any) => props.gap};
+`;
 
 type SocialMediaProps = {
   type: string;
@@ -12,6 +18,7 @@ type SocialIconsProps = {
   socialMedia: Array<SocialMediaProps>;
   color?: string;
   hoverColor?: string;
+  gap?: string;
 };
 
 type SocialIconProps = {
@@ -24,6 +31,7 @@ type SocialIconProps = {
 };
 
 const selectIcon = (type: string, color: string) => {
+  console.log('x', color);
   switch (type) {
     case 'facebook':
       return <SocialFacebook color={color} />;
@@ -46,7 +54,7 @@ const SocialIcon = ({
 }: SocialIconProps) => {
   const [currentColor, setCurrentColor] = useState(color);
   return (
-    <>
+    <div>
       <a
         target="_blank"
         rel="noopener noreferrer"
@@ -56,7 +64,7 @@ const SocialIcon = ({
       >
         {selectIcon(type, currentColor)}
       </a>
-    </>
+    </div>
   );
 };
 
@@ -66,9 +74,10 @@ export const SocialIcons = ({
   height = '20px',
   color = 'black',
   hoverColor = 'black',
+  gap = '30px',
 }: SocialIconsProps) => {
   return (
-    <>
+    <ImgWrapper gap={gap}>
       {socialMedia.map((socMediaItem) => (
         <SocialIcon
           width={width}
@@ -79,6 +88,6 @@ export const SocialIcons = ({
           hoverColor={hoverColor}
         />
       ))}
-    </>
+    </ImgWrapper>
   );
 };

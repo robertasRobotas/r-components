@@ -10,6 +10,7 @@ export const Wrapper = styled.form<any>`
 export const Input = styled.input<any>`
   width: 100%;
   box-sizing: border-box;
+  border: none;
   ${(props) =>
     props.isBorder &&
     css`
@@ -31,6 +32,7 @@ export const TextArea = styled.textarea<any>`
   width: 100%;
   box-sizing: border-box;
   resize: none;
+  border: none;
   ${(props) =>
     props.isBorder &&
     css`

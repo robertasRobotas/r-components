@@ -27,5 +27,13 @@ export const SimpleIconComponent: Story = (args) => {
 };
 
 export const SocialIconComponents: Story = (args) => {
-  return <SocialIcons width="20px" height="20px" socialMedia={socialMedia} />;
+  return (
+    <SocialIcons
+      width="20px"
+      height="20px"
+      socialMedia={socialMedia}
+      color="#968068"
+      gap="50px"
+    />
+  );
 };
