@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 const ImgWrapper = styled.div<any>`
   display: flex;
-  gap: ${(props: any) => props.gap};
+  justify-content: space-between;
+  width: 100%;
 `;
 
 type SocialMediaProps = {
@@ -18,7 +19,6 @@ type SocialIconsProps = {
   socialMedia: Array<SocialMediaProps>;
   color?: string;
   hoverColor?: string;
-  gap?: string;
 };
 
 type SocialIconProps = {
@@ -54,17 +54,15 @@ const SocialIcon = ({
 }: SocialIconProps) => {
   const [currentColor, setCurrentColor] = useState(color);
   return (
-    <div>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        onMouseEnter={() => setCurrentColor(hoverColor)}
-        onMouseLeave={() => setCurrentColor(color)}
-        href={link}
-      >
-        {selectIcon(type, currentColor)}
-      </a>
-    </div>
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseEnter={() => setCurrentColor(hoverColor)}
+      onMouseLeave={() => setCurrentColor(color)}
+      href={link}
+    >
+      {selectIcon(type, currentColor)}
+    </a>
   );
 };
 
@@ -74,10 +72,9 @@ export const SocialIcons = ({
   height = '20px',
   color = 'black',
   hoverColor = 'black',
-  gap = '30px',
 }: SocialIconsProps) => {
   return (
-    <ImgWrapper gap={gap}>
+    <ImgWrapper>
       {socialMedia.map((socMediaItem) => (
         <SocialIcon
           width={width}
