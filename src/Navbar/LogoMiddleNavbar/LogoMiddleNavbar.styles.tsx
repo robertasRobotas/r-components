@@ -11,7 +11,7 @@ export const ContentWrapper = styled.div<any>`
   margin: auto;
   max-width: ${(props) => (props.maxWidth ? props.maxWidth : '1200px')};
   background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor : ''};
+    props.backgroundColor ? props.backgroundColor : 'white'};
   color: ${(props) => (props.fontColor ? props.fontColor : 'black')};
   height: 100px;
   padding-left: 30px;
