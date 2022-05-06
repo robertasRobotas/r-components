@@ -16,7 +16,7 @@ export const ContentWrapper = styled.div<any>`
   height: 100px;
   padding-left: 30px;
   padding-right: 30px;
-
+  z-index: 100;
   box-sizing: border-box;
 
   @media (max-width: ${(props) => props.mobileVersionMaxWidth}) {
