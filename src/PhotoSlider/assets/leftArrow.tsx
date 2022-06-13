@@ -1,8 +1,9 @@
 import React from 'react';
 
-export const leftArrow = () => {
+export const LeftArrow = ({ onClick }: any) => {
   return (
     <svg
+      onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       width="12.143"
       height="21.764"

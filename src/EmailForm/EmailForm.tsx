@@ -94,7 +94,7 @@ export const EmailForm = ({
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [idDisabledButton, setIsDisabledButton] = useState(false);
-  const [file, setFile] = useState();
+  const [file, setFile] = useState('');
 
   const addFile = () => {
     inputFile.current!.click();
@@ -114,14 +114,33 @@ export const EmailForm = ({
       message,
     });
 
+    console.log('file', typeof file);
+
+    var data = file && file.match(/base64,(.+)$/);
+
     if (!validation) {
       setSubmitMessage(messageFillAllFields);
       setIsError(true);
       return;
     }
 
+    var templateParams = {
+      name: name,
+      email: email,
+      message: message,
+      image: file,
+      attachment: [
+        {
+          data: file,
+          encoded: true,
+          name: 'file.png',
+          type: 'image/png',
+        },
+      ],
+    };
+
     emailjs
-      .sendForm(your_service_id, your_template_id, form.current!, your_user_id)
+      .send(your_service_id, your_template_id, templateParams, your_user_id)
       .then(
         (result: any) => {
           console.log(result.text);
@@ -144,7 +163,13 @@ export const EmailForm = ({
   };
 
   return (
-    <Wrapper ref={form} font={font} fontColor={fontColor}>
+    <Wrapper
+      enctype="multipart/form-data"
+      encType="multipart/form-data"
+      ref={form}
+      font={font}
+      fontColor={fontColor}
+    >
       {isName && (
         <Input
           name="name"
@@ -213,10 +238,9 @@ export const EmailForm = ({
       {addFileButton && (
         <>
           <AddFileInput
-            name="image"
+            name="my_file"
             type="file"
             ref={inputFile}
-            value={file}
             onChange={(event: any) => setFile(event.target.value)}
           />
           <AddFileButtonWrapper>

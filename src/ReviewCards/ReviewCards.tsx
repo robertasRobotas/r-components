@@ -24,27 +24,26 @@ type ReviewCardsProps = {
 export const ReviewCards = ({
   type,
   reviews,
-}: // color,
-// intervalTime,
-// rightArrowComponent,
-// letterSpacing,
-// backgroundColor,
-// autoPlay,
-// mobileVersionMaxWidth,
-ReviewCardsProps) => {
+  color,
+  intervalTime,
+  rightArrowComponent,
+  letterSpacing,
+  backgroundColor,
+  autoPlay,
+  mobileVersionMaxWidth,
+}: ReviewCardsProps) => {
   if (type === 'simple-carousel-review' && reviews) {
     return (
-      // <SimpleCarouselReviews
-      //   autoPlay={autoPlay || false}
-      //   reviews={reviews}
-      //   color={color}
-      //   intervalTime={intervalTime}
-      //   rightArrowComponent={rightArrowComponent}
-      //   letterSpacing={letterSpacing}
-      //   backgroundColor={backgroundColor}
-      //   mobileVersionMaxWidth={mobileVersionMaxWidth}
-      // />
-      <>vaiting for next.js global css imports solution</>
+      <SimpleCarouselReviews
+        autoPlay={autoPlay || false}
+        reviews={reviews}
+        color={color}
+        intervalTime={intervalTime}
+        rightArrowComponent={rightArrowComponent}
+        letterSpacing={letterSpacing}
+        backgroundColor={backgroundColor}
+        mobileVersionMaxWidth={mobileVersionMaxWidth}
+      />
     );
   }
   return null;

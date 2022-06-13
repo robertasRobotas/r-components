@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { leftArrow } from './assets/leftArrow';
-import { rightArrow } from './assets/rightArrow';
+import { LeftArrow } from './assets/leftArrow';
+import { RightArrow } from './assets/rightArrow';
 
 export const Wrapper = styled.div<any>`
   width: 100%;
@@ -10,17 +10,8 @@ export const Wrapper = styled.div<any>`
   transform: translateX(-50%);
   color: ${(props) => (props.color ? props.color : 'black')};
   display: flex;
-  align-content: center;
-`;
-
-export const LeftArrow = styled.img<any>`
-  padding-right: 15px;
-  cursor: pointer;
-`;
-
-export const RightArrow = styled.img<any>`
-  padding-left: 15px;
-  cursor: pointer;
+  align-items: center;
+  gap: 15px;
 `;
 
 type SwitcherProps = {
@@ -50,7 +41,6 @@ export const Switcher = ({
     return (
       <Wrapper color={color} size={size}>
         <LeftArrow
-          src={leftArrow}
           onClick={(e: any) => {
             e.stopPropagation();
             openPreviousPhotoClick();
@@ -59,7 +49,6 @@ export const Switcher = ({
         />
         {currentPhotoNumber} / {photosLength}
         <RightArrow
-          src={rightArrow}
           onClick={(e: any) => {
             e.stopPropagation();
             openNextPhotoClick();

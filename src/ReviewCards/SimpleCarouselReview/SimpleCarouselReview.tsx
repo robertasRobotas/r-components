@@ -1,5 +1,5 @@
 import React from 'react';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import './caruselStyles.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import styled, { css } from 'styled-components';
 import { RightArrow } from '../assets/rightArrow';

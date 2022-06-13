@@ -32,7 +32,7 @@ export const PhotoSliderComponent: Story = (args) => {
       mobileVersionMaxWidth="767px"
       backgroundColor="#f2f2f2"
       logoSrc={logo}
-      logoWidthPx={240}
+      logoWidthPx={280}
       minWebsiteWidth="400px"
       fontSize="16px"
     />
