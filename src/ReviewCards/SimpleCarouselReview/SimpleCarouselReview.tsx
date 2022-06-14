@@ -204,11 +204,11 @@ export const SimpleCarouselReviews = ({
   backgroundColor,
   mobileVersionMaxWidth,
 }: ReviewsProps) => {
-  console.log('reviews', reviews);
   return (
     <CarouselWrapper>
       <Carousel
         preventMovementUntilSwipeScrollTolerance={true}
+        infiniteLoop={true}
         swipeScrollTolerance={50}
         autoPlay={autoPlay}
         interval={intervalTime}

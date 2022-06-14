@@ -47,7 +47,7 @@ export const ReviewCardComponent: Story = (args) => {
       minWebsiteWidth={'375px'}
       color="#3E3E3E"
       letterSpacing="2px"
-      intervalTime={6000}
+      intervalTime={5000}
       autoPlay={true}
     />
   );
