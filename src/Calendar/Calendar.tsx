@@ -29,6 +29,7 @@ export const Calendar = ({
         isDisplayYear={isDisplayYear}
         monthLinesNumber={monthLinesNumber}
         monthDayNames={monthDayNames}
+        bookedDayColor={'red'}
       />
     );
   }

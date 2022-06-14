@@ -10,6 +10,7 @@ export const Wrapper = styled.div<any>`
   height: ${(props) => props.height};
   border: 1px solid ${(props) => props.mainColor};
   color: ${(props) => props.mainColor};
+  transition: 0.3s;
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : 'white'};
   cursor: pointer;

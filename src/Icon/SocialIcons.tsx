@@ -31,7 +31,6 @@ type SocialIconProps = {
 };
 
 const selectIcon = (type: string, color: string) => {
-  console.log('x', color);
   switch (type) {
     case 'facebook':
       return <SocialFacebook color={color} />;

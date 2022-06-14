@@ -48,7 +48,8 @@ const BookedWrapper = styled.div<any>`
 
   border-radius: 50%;
 
-  background: #d17575;
+  background: ${(props) =>
+    props.bookedDayColor ? props.bookedDayColor : '#d17575'};
   color: white;
 `;
 
@@ -69,6 +70,7 @@ type CalendarProps = {
   isDisplayYear?: boolean;
   monthLinesNumber?: number;
   monthDayNames?: Array<string>;
+  bookedDayColor?: string;
 };
 
 export const MonthAvailabilityCalendar = ({
@@ -78,6 +80,7 @@ export const MonthAvailabilityCalendar = ({
   isDisplayYear,
   monthLinesNumber,
   monthDayNames,
+  bookedDayColor,
 }: CalendarProps) => {
   const {
     calendarRows,
@@ -130,7 +133,9 @@ export const MonthAvailabilityCalendar = ({
                           key={col.date}
                           onClick={() => dateClickHandler(col.date)}
                         >
-                          <BookedWrapper> {col.value}</BookedWrapper>
+                          <BookedWrapper bookedDayColor={bookedDayColor}>
+                            {col.value}
+                          </BookedWrapper>
                         </CalendarDay>
                       ) : (
                         <CalendarDay
