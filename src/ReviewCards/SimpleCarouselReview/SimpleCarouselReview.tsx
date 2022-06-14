@@ -109,7 +109,7 @@ export const ReviewText = styled.div<any>`
 export const RightArrowWrapper = styled.div<any>`
   z-index: 10;
   position: absolute;
-  top: 60%;
+  top: 40%;
   right: 40px;
   cursor: pointer;
 
@@ -121,7 +121,7 @@ export const RightArrowWrapper = styled.div<any>`
 export const LeftArrowWrapper = styled.div<any>`
   z-index: 10;
   position: absolute;
-  top: 60%;
+  top: 40%;
   left: 40px;
   cursor: pointer;
 
