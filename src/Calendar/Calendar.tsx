@@ -9,6 +9,7 @@ type CalendarProps = {
   isDisplayYear?: boolean;
   monthLinesNumber?: number;
   monthDayNames?: Array<string>;
+  bookedDayColor?: string;
 };
 
 export const Calendar = ({
@@ -19,6 +20,7 @@ export const Calendar = ({
   isDisplayYear = true,
   monthLinesNumber,
   monthDayNames,
+  bookedDayColor,
 }: CalendarProps) => {
   if (type === 'availability-of-specific-month') {
     return (
@@ -29,7 +31,7 @@ export const Calendar = ({
         isDisplayYear={isDisplayYear}
         monthLinesNumber={monthLinesNumber}
         monthDayNames={monthDayNames}
-        bookedDayColor={'red'}
+        bookedDayColor={bookedDayColor}
       />
     );
   }
