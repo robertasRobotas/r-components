@@ -30,7 +30,7 @@ export const IconWrapper = styled.div<any>`
 `;
 
 type UnderlinedButtonProps = {
-  onClick: () => void;
+  onClick?: () => void;
   mainColor: string;
   invertedColor: string;
   fontSize: string;

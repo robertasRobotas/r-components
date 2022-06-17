@@ -19,7 +19,7 @@ type Item = {
 type SimpleCardsProps = {
   type: 'simple-items' | 'simple-items-reverse' | 'simple-items-changing-sides';
   itemsArray: Array<Item>;
-  onClick: () => void;
+  onClick?: () => void;
   buttonContent?: string;
   backgroundHoverColor?: string;
   buttonColor: string;

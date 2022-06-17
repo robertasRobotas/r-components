@@ -4,7 +4,7 @@ import { UnderlinedButton } from './UnderlinedButton/UnderlinedButton';
 
 type ReviewCardsProps = {
   type: 'enter-button' | 'underlined-botton';
-  onClick: () => void;
+  onClick?: () => void;
   mainColor: string;
   invertedColor: string;
   fontSize: string;

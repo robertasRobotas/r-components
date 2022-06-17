@@ -9,7 +9,7 @@ type Item = {
 
 type GalleryCardsProps = {
   type: 'simple-items' | 'simple-items-reverse' | 'simple-items-changing-sides';
-  onClick: () => void;
+  onClick?: () => void;
   itemsArray: Array<Item>;
   buttonContent?: string;
   backgroundHoverColor?: string;

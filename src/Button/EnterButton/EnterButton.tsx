@@ -35,7 +35,7 @@ export const IconWrapper = styled.div<any>`
 `;
 
 type ReviewCardsProps = {
-  onClick: () => void;
+  onClick?: () => void;
   mainColor: string;
   invertedColor: string;
   fontSize: string;

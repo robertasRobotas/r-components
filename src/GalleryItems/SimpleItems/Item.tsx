@@ -110,7 +110,7 @@ const ButtonWrapper = styled.div<any>`
 
 type ItemProps = {
   photo: any;
-  onClick: () => void;
+  onClick?: () => void;
   title: string;
   buttonContent: any;
   backgroundHoverColor?: string;
